@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "subway-realtime",
+    "slug": "subway-realtime",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "subway-realtime"
+}
