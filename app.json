@@ -3,9 +3,12 @@
     "name": "subway-realtime",
     "slug": "subway-realtime",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "infoPlist": {
+        "UIBackgroundModes": ["location", "fetch"]
+      }
+    }
   },
   "name": "subway-realtime"
 }
