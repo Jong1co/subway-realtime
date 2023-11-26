@@ -1,4 +1,4 @@
-import { StationInfo, stationInfo } from "../data/StationInfo";
+import { StationInfo, stationInfo } from "../repository/data/StationInfo";
 import { Coordinate, calculateDistance } from "./calculateDistance";
 
 export function findStationByDistance(

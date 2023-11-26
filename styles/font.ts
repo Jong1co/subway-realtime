@@ -68,6 +68,8 @@ export const font = {
     `,
 };
 
+//어디 역인지는 주어짐
+
 {
   구로: [
     {
@@ -76,7 +78,10 @@ export const font = {
       direction: "인천",
       bookmark: false,
       arrivalTime: "3분",
-      subwayPosition: ["온수", "까치산"],
+      subwayInfoList: [
+        { position: "온수", arrivalStation: "도봉산", subwayId: "1111" },
+        { position: "까치산", arrivalStation: "도봉산", subwayId: "1112" },
+      ],
     },
     {
       line: "1호선",
@@ -84,7 +89,10 @@ export const font = {
       direction: "신창",
       bookmark: false,
       arrivalTime: "3분",
-      subwayPosition: ["온수", "까치산"],
+      subwayInfoList: [
+        { position: "온수", arrivalStation: "도봉산", subwayId: "1111" },
+        { position: "까치산", arrivalStation: "도봉산", subwayId: "1112" },
+      ],
     },
     {
       line: "1호선",
@@ -92,7 +100,10 @@ export const font = {
       direction: "인천, 신창",
       bookmark: false,
       arrivalTime: "3분",
-      subwayPosition: ["온수", "까치산"],
+      subwayInfoList: [
+        { position: "온수", arrivalStation: "도봉산", subwayId: "1111" },
+        { position: "까치산", arrivalStation: "도봉산", subwayId: "1112" },
+      ],
     },
   ];
 }

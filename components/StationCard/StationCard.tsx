@@ -1,12 +1,12 @@
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { StationInfo } from "../../data/StationInfo";
+import { StationInfo } from "../../repository/data/StationInfo";
 import LineBadge from "../_common/LineBadge/LineBadge";
 import * as Style from "./styles";
 import { Shadow } from "react-native-shadow-2";
-import { lineName, lineStore } from "../../data/line";
+import { lineName, lineStore } from "../../repository/data/line";
 import { RunningSubwayInfo } from "../../screens/HomeScreen";
-import { RealTimeArrival } from "../../data/dummy";
+import { RealTimeArrival } from "../../repository/data/dummy";
 
 type Props = StationInfo & {
   onPress: () => void;
@@ -53,6 +53,8 @@ const StationCard = ({
     return result;
   };
 
+  const lineColor = "#54640D";
+
   return (
     <Shadow
       distance={8}
@@ -63,8 +65,8 @@ const StationCard = ({
       offset={[0, 0]}
     >
       <Style.Card onPress={onPress}>
-        <Style.TitleSection>
-          <LineBadge line_num={line_num} />
+        <Style.TitleSection color={lineColor}>
+          {/* <LineBadge line_num={line_num} /> */}
           <Style.Title>
             {station_nm} - {direction === "right" ? "상행" : "하행"}
           </Style.Title>

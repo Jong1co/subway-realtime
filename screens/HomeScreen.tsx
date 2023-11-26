@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import * as Location from "expo-location";
 import { findStationByDistance } from "../utils/findStationByDistance";
 import { Coordinate } from "../utils/calculateDistance";
-import { StationInfo, stationInfo } from "../data/StationInfo";
+import { StationInfo, stationInfo } from "../repository/data/StationInfo";
 import {
   Button,
   FlatList,
@@ -16,7 +16,7 @@ import StationCard from "../components/StationCard/StationCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../router/Router";
 import { seoulApi } from "../api";
-import { RealTimeArrival } from "../data/dummy";
+import { RealTimeArrival } from "../repository/data/dummy";
 import Header from "../components/_common/Header/Header";
 import { convertDistanceFormat } from "../utils/convertDistanceFormat";
 import BookmarkSection from "../components/BookmarkSection/BookmarkSection";
@@ -64,7 +64,7 @@ export default function HomeScreen({
     setStationList(result);
   }, [location, distance]);
 
-  console.log(stationList);
+  // console.log(stationList);
 
   const requestPermission = async () => {
     const permission = await Location.requestForegroundPermissionsAsync();
@@ -124,7 +124,7 @@ export default function HomeScreen({
         onPress={() => onReachedLastItem({ station_nm: "삼산체육관" })}
       /> */}
       <FlatList
-        data={[stationInfo[757], stationInfo[758], stationInfo[759]]}
+        data={[stationInfo[100], stationInfo[101], stationInfo[102]]}
         ListHeaderComponent={
           <>
             <BookmarkSection />
