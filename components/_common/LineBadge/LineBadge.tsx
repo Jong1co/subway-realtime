@@ -14,12 +14,12 @@ const lineInfo = {
 };
 
 type Props = {
-  line_num: string;
+  line: string;
   size?: "md" | "sm";
 };
 
-const LineBadge = ({ line_num, size = "md" }: Props) => {
-  const { color, text } = lineInfo[line_num];
+const LineBadge = ({ line, size = "md" }: Props) => {
+  const { color, text } = lineInfo[line];
   return (
     <Style.Badge color={color} size={size}>
       <Style.BadgeText size={size}>{text}</Style.BadgeText>

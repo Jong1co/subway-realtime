@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { LineServiceImpl } from "../../service/LineServiceImpl";
+import LineBadge from "../_common/LineBadge/LineBadge";
+import * as Style from "./styles";
+import StationLineCard from "../StationLineCard/StationLineCard";
+import { StationInfo } from "../../repository/data/StationInfo";
+import { seoulApi } from "../../api";
+import { RealTimeArrival } from "../../repository/data/dummy";
+import { StationServiceImpl } from "../../service/StationServiceImpl";
 
 type Props = {
   station: string;
@@ -8,27 +15,63 @@ type Props = {
 };
 
 const StationGroup = ({ station, line }: Props) => {
+  const [runningSubwayList, setRunningSubwayList] = useState<
+    { direction: string; currentPosition: string }[]
+  >([]);
   const subwayLineByStation = new LineServiceImpl(station, line).line;
-  console.log();
+
+  const onReachedLastItem = async ({
+    station_nm,
+  }: Pick<StationInfo, "station_nm">) => {
+    const { data } = await seoulApi.get(
+      `/realtimeStationArrival/1/5/${station_nm}`
+    );
+
+    const realtimeArrivalList: RealTimeArrival[] = data.realtimeArrivalList;
+
+    // const mappedArrivalList = realtimeArrivalList.map((subway) => {
+    //   return {
+    //     currentPosition: subway.arvlMsg3,
+    //     arrivalPosition: subway.arvlMsg2,
+    //   };
+    // });
+
+    const result = realtimeArrivalList.map((realtimeArrival) => {
+      return {
+        direction: new StationServiceImpl(realtimeArrival).direction,
+        currentPosition: realtimeArrival.arvlMsg3,
+      };
+    });
+
+    setRunningSubwayList(result);
+  };
+  // console.log(runningSubwayList);
+  // useEffect(() => {
+  //   onReachedLastItem({ station_nm: "영등포" });
+  // }, []);
 
   return (
-    <View>
-      {Object.entries(subwayLineByStation).map(([direction, lineInfo]) => {
-        console.log(lineInfo);
-        return (
-          <View key={direction}>
-            <Text>({direction})</Text>
-            {lineInfo.map(({ list, nextStation }, i) => {
-              return (
-                <View key={i}>
-                  <Text>{list.join("-")}</Text>
-                </View>
-              );
-            })}
-            {/* {lineInfo} */}
-          </View>
-        );
-      })}
+    <View style={{ marginHorizontal: 16, marginTop: 24 }}>
+      <Style.GroupTitle>
+        <LineBadge line={line} />
+        <Style.StationName>{station}역</Style.StationName>
+      </Style.GroupTitle>
+      {Object.entries(subwayLineByStation).map(([destination, lineInfo]) => (
+        <>
+          <View style={{ height: 16 }} />
+          <StationLineCard
+            currentStation={station}
+            destination={destination} // ex) 인천, 신창, 소요산
+            lineInfo={lineInfo}
+            runningSubwayList={runningSubwayList.reduce((accr, curr) => {
+              if (curr.direction === destination) {
+                return [...accr, curr.currentPosition];
+              }
+              return accr;
+            }, [] as string[])}
+          />
+        </>
+      ))}
     </View>
   );
 };

@@ -9,7 +9,15 @@ import StationGroup from "../StationGroup/StationGroup";
 const StationCardSection = () => {
   return (
     <FlatList
-      data={[{ station: "구로", line: "1호선" }]}
+      data={[
+        { station: "인천", line: "1호선" },
+        { station: "동인천", line: "1호선" },
+        { station: "소요산", line: "1호선" },
+        // { station: "영등포", line: "1호선" },
+        // { station: "신길", line: "1호선" },
+        // { station: "대방", line: "1호선" },
+        // { station: "서울", line: "1호선" },
+      ]}
       ListHeaderComponent={
         <>
           <BookmarkSection />
@@ -20,11 +28,7 @@ const StationCardSection = () => {
       ItemSeparatorComponent={() => (
         <View style={{ height: 16, width: "100%" }} />
       )}
-      renderItem={({ item }) => (
-        <>
-          <StationGroup {...item} />
-        </>
-      )}
+      renderItem={({ item }) => <StationGroup {...item} />}
       keyExtractor={(item) => item.station + item.line}
       // onEndReached={() => alert("hi")} // 끝에 도달하면 실행하는 함수 (무한스크롤?)
       // onStartReached={() => alert("h2")} // 시작에 도달하면 실행하는 함수 (무한스크롤?)

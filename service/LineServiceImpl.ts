@@ -5,18 +5,30 @@ import { 인천_소요산, 신창_소요산 } from "../repository/data/line";
 export class LineServiceImpl implements LineService {
   private lineCode: string = "";
 
-  //이걸 호선마다 바꿔줘야 함
-  private _lineList: { list: string[]; direction: string }[] = [
-    { list: 인천_소요산, direction: 인천_소요산[0] },
-    { list: 신창_소요산, direction: 신창_소요산[0] },
+  // 내 역으로 접근하는 뒤의 두 역이 두 라인에 걸쳐있는 역
+  private twoLineStation: string[] = ["구로", "신도림", "영등포", "신길"];
+
+  // 분기점이 되는 역
+  private threeLineStation: string[] = ["구로"];
+
+  //상행, 하행 역
+  private _lineList: {
+    list: string[];
+    destination: string;
+    direction: string;
+  }[] = [
     {
       list: [...인천_소요산].reverse(),
-      direction: [...인천_소요산].reverse()[0],
+      destination: "소요산",
+      direction: "상행",
     },
     {
       list: [...신창_소요산].reverse(),
-      direction: [...인천_소요산].reverse()[0],
+      destination: "소요산",
+      direction: "상행",
     },
+    { list: 인천_소요산, destination: 인천_소요산[0], direction: "하행" },
+    { list: 신창_소요산, destination: 신창_소요산[0], direction: "하행" },
   ];
 
   constructor(private station: string, private lineName: string) {
@@ -28,43 +40,65 @@ export class LineServiceImpl implements LineService {
   }
 
   get line() {
-    const result: { list: string[]; direction: string; nextStation: string }[] =
-      [];
+    const result: {
+      list: string[];
+      destination: string;
+      nextStation: string;
+      direction: string;
+    }[] = [];
     this._lineList.forEach((line) => {
       const index = line.list.indexOf(this.station);
+      if (index === -1) {
+        // throw new Error("역이 존재하지 않습니다.");
+        return;
+      }
+
       const createdLine = line.list.slice(index, index + 5);
+      if (createdLine.length < 5) {
+        let i = 1;
+        while (createdLine.length < 5) {
+          createdLine.unshift(line.list[index - i]);
+          i++;
+        }
+      }
+
+      const isLastStation = line.list.indexOf(this.station) === 0;
+      const isThreeLineStation = this.threeLineStation.includes(this.station);
+      const isTwoLineStation = this.twoLineStation.includes(this.station);
 
       const resultHashKey = JSON.stringify(result);
       const hashKey = JSON.stringify(createdLine);
+      const isExistRoute = resultHashKey.includes(hashKey);
 
-      if (index !== -1) {
+      if (
+        (!isTwoLineStation && !isExistRoute) ||
+        (!isExistRoute && isTwoLineStation) ||
+        isThreeLineStation
+      ) {
+        //만약 종점역이라면 리스트를 보여줄 필요가 없다.
+        if (isLastStation) return;
         result.push({
           list: createdLine,
-          direction: line.direction,
+          destination: line.destination,
           nextStation: line.list[index - 1],
+          direction: line.direction,
         });
+      } else if (isTwoLineStation && isExistRoute) {
+        const targetStation = result.find(
+          (item) => JSON.stringify(item.list) === hashKey
+        );
+        if (targetStation) targetStation.destination += `, ${line.destination}`;
       }
     });
 
     return result.reduce((accr, curr) => {
-      const { direction, ...rest } = curr;
+      const { destination, ...rest } = curr;
 
-      accr[direction] ? accr[direction].push(rest) : (accr[direction] = [rest]);
-      // console.log(direction, accr[direction]);
+      accr[destination]
+        ? accr[destination].push(rest)
+        : (accr[destination] = [rest]);
+
       return accr;
-    }, {} as { [direction in string]: { list: string[]; nextStation: string }[] });
+    }, {} as { [destination in string]: { list: string[]; nextStation: string; direction: string }[] });
   }
 }
-
-// private getLineGroup = (station: string, lineName: string) => {
-
-//   Object.values(stationData).forEach((stationInfo) => {
-//     if (stationInfo.station_nm === station) {
-
-//     }
-//   });
-
-//   return [...set];
-// };
-
-// this._lineList = this.getLineGroup(this.station, this.lineName);

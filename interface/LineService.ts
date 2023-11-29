@@ -1,7 +1,7 @@
 export interface LineService {
   lineColor: string;
   line: {
-    [direction in string]: {
+    [destination in string]: {
       list: string[];
       nextStation: string;
     }[];

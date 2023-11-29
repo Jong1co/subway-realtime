@@ -1,4 +1,4 @@
-import { RealTimeArrival, dummyData_1_line } from "../repository/data/dummy";
+import { RealTimeArrival } from "../repository/data/dummy";
 import { StationService } from "../interface/StationService";
 import { StationServiceImpl } from "../service/StationServiceImpl";
 
@@ -6,7 +6,7 @@ describe("실시간 지하철 정보 (방향)", () => {
   let stationService: StationService;
 
   //삼산체육관이 주어졌을 때임
-  let realTimeArrival: RealTimeArrival[] = dummyData_1_line;
+  let realTimeArrival: RealTimeArrival[] = [];
 
   beforeEach(() => {});
 

@@ -28,7 +28,7 @@ const Bookmark = ({
       </Style.CardTitle>
 
       <Style.CardContent>
-        <LineBadge line_num={line} size="sm" />
+        <LineBadge line={line} size="sm" />
         <Style.CurrentStation>{currentStation}</Style.CurrentStation>
         <Style.Arrow />
         <Style.NextStation>{direction}</Style.NextStation>

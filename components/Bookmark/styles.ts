@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 export const Card = styled.TouchableOpacity`
   padding: 8px 12px;
   align-self: flex-start;
-  height: fit-content;
+  height: auto;
   background-color: ${({ theme }) => theme.colors.secondary_200};
   border-radius: 12px;
   /* height: 54px; */
