@@ -26,6 +26,7 @@ const Bookmark = ({
         </Style.DirectionWrapper>
         <Style.ArrivalTime>{arrivalTime}</Style.ArrivalTime>
       </Style.CardTitle>
+
       <Style.CardContent>
         <LineBadge line_num={line} size="sm" />
         <Style.CurrentStation>{currentStation}</Style.CurrentStation>

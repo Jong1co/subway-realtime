@@ -1,4 +1,6 @@
-export const getLineName = (lineId: string) => {
+import { LineId } from "../repository/data/line";
+
+export const getLineName = (lineId: LineId) => {
   switch (lineId) {
     case "1001":
       return "1호선";
@@ -24,10 +26,8 @@ export const getLineName = (lineId: string) => {
       return "공항철도";
     case "1067":
       return "경춘선";
-    case "1071":
-      return "수인선";
     case "1075":
-      return "분당선";
+      return "수인분당선";
     case "1077":
       return "신분당선";
     case "1078":

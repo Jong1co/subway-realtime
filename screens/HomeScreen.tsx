@@ -22,6 +22,8 @@ import { convertDistanceFormat } from "../utils/convertDistanceFormat";
 import BookmarkSection from "../components/BookmarkSection/BookmarkSection";
 import Seperator from "../components/_common/Seperator";
 import BookmarkButton from "../components/BookmarkButton/BookmarkButton";
+import { LineServiceImpl } from "../service/LineServiceImpl";
+import StationCardSection from "../components/StationCardSection/StationCardSection";
 
 export type RunningSubwayInfo = {
   currentPosition: string;
@@ -63,8 +65,6 @@ export default function HomeScreen({
 
     setStationList(result);
   }, [location, distance]);
-
-  // console.log(stationList);
 
   const requestPermission = async () => {
     const permission = await Location.requestForegroundPermissionsAsync();
@@ -118,43 +118,13 @@ export default function HomeScreen({
         // paddingVertical: 24,
       }}
     >
-      <BookmarkButton />
+      {/* <BookmarkButton /> */}
       {/* <Button
         title="요청"
         onPress={() => onReachedLastItem({ station_nm: "삼산체육관" })}
       /> */}
-      <FlatList
-        data={[stationInfo[100], stationInfo[101], stationInfo[102]]}
-        ListHeaderComponent={
-          <>
-            <BookmarkSection />
-            <Seperator />
-          </>
-        }
-        // refreshing={true}
-        ItemSeparatorComponent={() => (
-          <View style={{ height: 16, width: "100%" }} />
-        )}
-        renderItem={({ item }) => (
-          <>
-            <StationCard
-              onPress={moveToDetailPage}
-              runningSubwayList={runningSubwayList}
-              direction="left"
-              {...item}
-            />
-            <View style={{ height: 16, width: "100%" }} />
-            <StationCard
-              onPress={moveToDetailPage}
-              runningSubwayList={runningSubwayList}
-              {...item}
-            />
-          </>
-        )}
-        keyExtractor={(item) => item.station_nm + item.line_num}
-        // onEndReached={() => alert("hi")} // 끝에 도달하면 실행하는 함수 (무한스크롤?)
-        // onStartReached={() => alert("h2")} // 시작에 도달하면 실행하는 함수 (무한스크롤?)
-      />
+      <StationCardSection />
+
       <StatusBar style="auto" />
     </View>
   );

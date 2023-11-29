@@ -6,6 +6,7 @@ import DetailScreen from "./screens/DetailScreen";
 import Router from "./router/Router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { theme } from "./styles/theme";
+import { useEffect, useState } from "react";
 
 export default function App() {
   const queryClient = new QueryClient();

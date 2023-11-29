@@ -1,3 +1,5 @@
+import { LineId } from "./line";
+
 export type RealTimeArrival = {
   //도착 코드: (0:진입, 1:도착, 2:출발, 3:전역출발, 4:전역진입, 5:전역도착, 99:운행중)
   arvlCd: "0" | "1" | "2" | "3" | "4" | "99";
@@ -26,7 +28,7 @@ export type RealTimeArrival = {
   statnNm: string;
   statnTid: string;
   subwayHeading: any | null;
-  subwayId: string;
+  subwayId: LineId;
   subwayList: string;
   subwayNm: any | null;
   totalCount: number;

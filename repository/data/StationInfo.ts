@@ -416,7 +416,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_cd: "0150",
     station_nm_jpn: "ソウル驛",
     station_nm_eng: "Seoul Station",
-    station_nm: "서울역",
+    station_nm: "서울",
     coordinate: {
       lat: 0,
       lng: 0,
@@ -2048,7 +2048,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_cd: "0426",
     station_nm_jpn: "ソウル驛",
     station_nm_eng: "Seoul Station",
-    station_nm: "서울역",
+    station_nm: "서울",
     coordinate: {
       lat: 0,
       lng: 0,
@@ -6368,7 +6368,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_cd: "1251",
     station_nm_jpn: "ソウル驛",
     station_nm_eng: "Seoul Station",
-    station_nm: "서울역",
+    station_nm: "서울",
     coordinate: {
       lat: 0,
       lng: 0,
@@ -7184,7 +7184,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_cd: "4201",
     station_nm_jpn: "ソウル驛",
     station_nm_eng: "Seoul Station",
-    station_nm: "서울역",
+    station_nm: "서울",
     coordinate: {
       lat: 0,
       lng: 0,
