@@ -3,11 +3,16 @@ import { Text } from "react-native";
 import { SvgIcon } from "../_common/SvgIcon/SvgIcon";
 import * as Style from "./styles";
 
-const BookmarkButton = () => {
+type Props = {
+  onPress: () => void;
+  isActive: boolean;
+};
+
+const BookmarkButton = ({ isActive, onPress }: Props) => {
   return (
-    <Style.Button onPress={() => {}} activeOpacity={0.8}>
+    <Style.Button isActive={isActive} onPress={onPress} activeOpacity={0.8}>
       <SvgIcon name="Star" width={16} height={16} fill={"black"} />
-      <Style.ButtonText>즐겨찾기</Style.ButtonText>
+      <Style.ButtonText isActive={isActive}>즐겨찾기</Style.ButtonText>
     </Style.Button>
   );
 };

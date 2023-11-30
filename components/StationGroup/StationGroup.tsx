@@ -65,6 +65,7 @@ const StationGroup = ({ station, line }: Props) => {
             currentStation={station}
             destination={destination} // ex) 인천, 신창, 소요산
             lineInfo={lineInfo}
+            line={line}
             runningSubwayList={runningSubwayList.reduce((accr, curr) => {
               if (curr.direction === destination) {
                 return [...accr, curr.currentPosition];
