@@ -1,19 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useEffect, useMemo, useState } from "react";
-import {
-  FlatList,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React, { useMemo } from "react";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import { RootStackParamList } from "../router/Router";
-import Header from "../components/_common/Header/Header";
-import SearchBar from "../components/_common/SearchBar/SearchBar";
 import { stationInfo } from "../repository/data/StationInfo";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { searchState } from "../atom/searchState";
 import { LineName } from "../components/_common/LineBadge/LineBadge";
+import { isAvailableLine } from "../repository/data/isAvailableLine";
 
 const SearchScreen = ({
   navigation,
@@ -21,14 +14,16 @@ const SearchScreen = ({
   const searchValue = useRecoilValue(searchState);
 
   const stationList = useMemo(() => {
-    const hash = Object.entries(stationInfo).reduce((accr, curr) => {
-      const stationName = curr[1].station_nm;
+    const hash = Object.entries(stationInfo).reduce((accr, [id, station]) => {
+      const { station_nm, line_num } = station;
+      // 이용 불가능한 노선은 제외
+      if (!isAvailableLine(line_num)) return accr;
 
-      accr[stationName]
-        ? accr[stationName].push(curr[1].line_num as LineName)
-        : (accr[stationName] = [curr[1].line_num as LineName]);
+      accr[station_nm]
+        ? accr[station_nm].push(line_num as LineName)
+        : (accr[station_nm] = [line_num as LineName]);
+
       return accr;
-      // return { station: value.station_nm, line: value.line_num, code: key };
     }, {} as { [station in string]: LineName[] });
 
     return Object.entries(hash).map(([station, lines]) => {

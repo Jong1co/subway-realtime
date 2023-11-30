@@ -3,16 +3,8 @@ import { useEffect, useState } from "react";
 import * as Location from "expo-location";
 import { findStationByDistance } from "../utils/findStationByDistance";
 import { Coordinate } from "../utils/calculateDistance";
-import { StationInfo, stationInfo } from "../repository/data/StationInfo";
-import {
-  Button,
-  FlatList,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StationInfo } from "../repository/data/StationInfo";
+import { TouchableOpacity, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../router/Router";
 import { seoulApi } from "../api";

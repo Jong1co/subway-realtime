@@ -1,6 +1,5 @@
 import { LineService } from "../interface/LineService";
-import { getLineCode } from "../utils/getLineCode";
-import { 인천_소요산, 신창_소요산, routeStore } from "../repository/data/line";
+import { routeStore } from "../repository/data/line";
 
 export class LineServiceImpl implements LineService {
   // 내 역으로 접근하는 뒤의 두 역이 두 라인에 걸쳐있는 역
@@ -73,13 +72,16 @@ export class LineServiceImpl implements LineService {
           nextStation: line.list[index - 1],
           direction: line.direction,
         });
-      } else if (isTwoLineStation && isExistRoute) {
+      } else if (isExistRoute) {
         const targetStation = result.find(
           (item) => JSON.stringify(item.list) === hashKey
         );
-        if (targetStation) targetStation.destination += `, ${line.destination}`;
+        if (targetStation && targetStation.destination !== line.destination)
+          targetStation.destination += `, ${line.destination}`;
       }
     });
+
+    console.log(result);
 
     return result.reduce((accr, curr) => {
       const { destination, ...rest } = curr;

@@ -31,11 +31,11 @@ export const getLineCode = (lineName: string) => {
     case "의정부경전철":
       return "1078";
     case "우이신설선":
-      return "1079";
+      return "1092";
     case "경강선":
       return "1081";
     case "서해선":
-      return "1082";
+      return "1093";
     default:
       return "호선 정보 없음";
   }
