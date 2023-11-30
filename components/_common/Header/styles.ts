@@ -21,5 +21,14 @@ export const DistanceBadgeText = styled.Text`
 `;
 
 export const Title = styled.Text`
-  ${({ theme }) => theme.font.subhead_1};
+  flex: 1;
+`;
+
+export const HeaderRight = styled.View``;
+export const Header = styled.View`
+  height: 48px;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 16px;
+  justify-content: space-between;
 `;

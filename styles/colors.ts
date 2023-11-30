@@ -19,7 +19,7 @@ export const colors = {
   primary: "#F25827",
   secondary_white: "#FFF",
   secondary_100: "#FBFAFA",
-  secondary_200: "#F9F9F9",
+  secondary_200: "#F2F2F2",
   secondary_300: "#EDECEC",
   secondary_400: "#9C9C9C",
   secondary_600: "#5C5C5C",

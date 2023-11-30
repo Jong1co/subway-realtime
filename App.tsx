@@ -7,15 +7,21 @@ import Router from "./router/Router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { theme } from "./styles/theme";
 import { useEffect, useState } from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { RecoilRoot } from "recoil";
 
 export default function App() {
   const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <Router />
-      </ThemeProvider>
+      <RecoilRoot>
+        <ThemeProvider theme={theme}>
+          <SafeAreaProvider>
+            <Router />
+          </SafeAreaProvider>
+        </ThemeProvider>
+      </RecoilRoot>
     </QueryClientProvider>
   );
 }

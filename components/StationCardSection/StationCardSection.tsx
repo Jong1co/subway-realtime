@@ -5,26 +5,30 @@ import { stationInfo } from "../../repository/data/StationInfo";
 import BookmarkSection from "../BookmarkSection/BookmarkSection";
 import Seperator from "../_common/Seperator";
 import StationGroup from "../StationGroup/StationGroup";
+import { LineName } from "../_common/LineBadge/LineBadge";
 
-const StationCardSection = () => {
+type Props = {
+  stationList?: { station: string; line: LineName }[];
+  LineHeaderComponent?: JSX.Element;
+};
+
+const StationCardSection = ({ stationList, LineHeaderComponent }: Props) => {
   return (
     <FlatList
       // style={{ flex: 1, width: "100%", backgroundColor: "blue" }}
-      data={[
-        { station: "장암", line: "7호선" },
-        { station: "도봉산", line: "7호선" },
-        // { station: "소요산", line: "1호선" },
-        // { station: "영등포", line: "1호선" },
-        // { station: "신길", line: "1호선" },
-        // { station: "대방", line: "1호선" },
-        // { station: "서울", line: "1호선" },
-      ]}
-      ListHeaderComponent={
-        <>
-          <BookmarkSection />
-          <Seperator />
-        </>
+      data={
+        stationList ??
+        ([
+          { station: "장암", line: "7호선" },
+          { station: "도봉산", line: "7호선" },
+          // { station: "소요산", line: "1호선" },
+          // { station: "영등포", line: "1호선" },
+          // { station: "신길", line: "1호선" },
+          // { station: "대방", line: "1호선" },
+          // { station: "서울", line: "1호선" },
+        ] as { station: string; line: LineName }[])
       }
+      ListHeaderComponent={LineHeaderComponent}
       ListFooterComponent={<View style={{ height: 60, width: "100%" }} />}
       // refreshing={true}
       ItemSeparatorComponent={() => (

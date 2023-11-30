@@ -10,20 +10,18 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
-import StationCard from "../components/StationCard/StationCard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../router/Router";
 import { seoulApi } from "../api";
 import { RealTimeArrival } from "../repository/data/dummy";
 import Header from "../components/_common/Header/Header";
-import { convertDistanceFormat } from "../utils/convertDistanceFormat";
+import StationCardSection from "../components/StationCardSection/StationCardSection";
+import * as Style from "../components/Home/styles";
 import BookmarkSection from "../components/BookmarkSection/BookmarkSection";
 import Seperator from "../components/_common/Seperator";
-import BookmarkButton from "../components/BookmarkButton/BookmarkButton";
-import { LineServiceImpl } from "../service/LineServiceImpl";
-import StationCardSection from "../components/StationCardSection/StationCardSection";
 
 export type RunningSubwayInfo = {
   currentPosition: string;
@@ -71,9 +69,9 @@ export default function HomeScreen({
     console.log(permission);
   };
 
-  const moveToDetailPage = () => {
-    navigation.navigate("Detail");
-  };
+  // const moveToDetailPage = () => {
+  //   navigation.navigate("Detail");
+  // };
 
   const onReachedLastItem = async ({
     station_nm,
@@ -96,11 +94,16 @@ export default function HomeScreen({
 
   useEffect(() => {
     navigation.setOptions({
-      headerLeft: () => {
+      header: () => {
         return (
           <Header
-            title="인천 중구 운서동"
-            distance={`${convertDistanceFormat(distance)}`}
+            left={<Style.HeaderTitle>인천 중구 운서동</Style.HeaderTitle>}
+            right={
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Search")}
+                style={{ width: 24, height: 24, backgroundColor: "gray" }}
+              />
+            }
           />
         );
       },
@@ -123,8 +126,14 @@ export default function HomeScreen({
         title="요청"
         onPress={() => onReachedLastItem({ station_nm: "삼산체육관" })}
       /> */}
-      <StationCardSection />
-
+      <StationCardSection
+        LineHeaderComponent={
+          <>
+            <BookmarkSection />
+            <Seperator />
+          </>
+        }
+      />
       <StatusBar style="auto" />
     </View>
   );

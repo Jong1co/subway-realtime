@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import { LineServiceImpl } from "../../service/LineServiceImpl";
-import LineBadge from "../_common/LineBadge/LineBadge";
+import LineBadge, { LineName } from "../_common/LineBadge/LineBadge";
 import * as Style from "./styles";
 import StationLineCard from "../StationLineCard/StationLineCard";
 import { StationInfo } from "../../repository/data/StationInfo";
@@ -12,7 +12,7 @@ import { getLineCode } from "../../utils/getLineCode";
 
 type Props = {
   station: string;
-  line: string;
+  line: LineName;
 };
 
 const StationGroup = ({ station, line }: Props) => {
