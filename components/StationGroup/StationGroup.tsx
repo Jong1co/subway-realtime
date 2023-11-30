@@ -8,6 +8,7 @@ import { StationInfo } from "../../repository/data/StationInfo";
 import { seoulApi } from "../../api";
 import { RealTimeArrival } from "../../repository/data/dummy";
 import { StationServiceImpl } from "../../service/StationServiceImpl";
+import { getLineCode } from "../../utils/getLineCode";
 
 type Props = {
   station: string;
@@ -18,7 +19,8 @@ const StationGroup = ({ station, line }: Props) => {
   const [runningSubwayList, setRunningSubwayList] = useState<
     { direction: string; currentPosition: string }[]
   >([]);
-  const subwayLineByStation = new LineServiceImpl(station, line).line;
+  const subwayLineByStation = new LineServiceImpl(station, getLineCode(line))
+    .line;
 
   const onReachedLastItem = async ({
     station_nm,

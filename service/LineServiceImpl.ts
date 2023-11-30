@@ -1,38 +1,28 @@
 import { LineService } from "../interface/LineService";
 import { getLineCode } from "../utils/getLineCode";
-import { 인천_소요산, 신창_소요산 } from "../repository/data/line";
+import { 인천_소요산, 신창_소요산, routeStore } from "../repository/data/line";
 
 export class LineServiceImpl implements LineService {
-  private lineCode: string = "";
-
   // 내 역으로 접근하는 뒤의 두 역이 두 라인에 걸쳐있는 역
-  private twoLineStation: string[] = ["구로", "신도림", "영등포", "신길"];
+  private _twoLineStation: string[] = [];
 
   // 분기점이 되는 역
-  private threeLineStation: string[] = ["구로"];
+  private _threeLineStation: string[] = [];
 
   //상행, 하행 역
   private _lineList: {
     list: string[];
     destination: string;
     direction: string;
-  }[] = [
-    {
-      list: [...인천_소요산].reverse(),
-      destination: "소요산",
-      direction: "상행",
-    },
-    {
-      list: [...신창_소요산].reverse(),
-      destination: "소요산",
-      direction: "상행",
-    },
-    { list: 인천_소요산, destination: 인천_소요산[0], direction: "하행" },
-    { list: 신창_소요산, destination: 신창_소요산[0], direction: "하행" },
-  ];
+  }[] = [];
 
-  constructor(private station: string, private lineName: string) {
-    this.lineCode = getLineCode(this.lineName);
+  constructor(private station: string, private lineCode: string) {
+    const routeInfo = routeStore[this.lineCode];
+    if (routeStore[this.lineCode]) {
+      this._lineList = routeInfo.lineList;
+      this._twoLineStation = routeInfo.twoLineStation;
+      this._threeLineStation = routeInfo.threeLineStation;
+    }
   }
 
   get lineColor() {
@@ -63,8 +53,8 @@ export class LineServiceImpl implements LineService {
       }
 
       const isLastStation = line.list.indexOf(this.station) === 0;
-      const isThreeLineStation = this.threeLineStation.includes(this.station);
-      const isTwoLineStation = this.twoLineStation.includes(this.station);
+      const isThreeLineStation = this._threeLineStation.includes(this.station);
+      const isTwoLineStation = this._twoLineStation.includes(this.station);
 
       const resultHashKey = JSON.stringify(result);
       const hashKey = JSON.stringify(createdLine);

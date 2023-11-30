@@ -9,10 +9,11 @@ import StationGroup from "../StationGroup/StationGroup";
 const StationCardSection = () => {
   return (
     <FlatList
+      // style={{ flex: 1, width: "100%", backgroundColor: "blue" }}
       data={[
-        { station: "인천", line: "1호선" },
-        { station: "동인천", line: "1호선" },
-        { station: "소요산", line: "1호선" },
+        { station: "장암", line: "7호선" },
+        { station: "도봉산", line: "7호선" },
+        // { station: "소요산", line: "1호선" },
         // { station: "영등포", line: "1호선" },
         // { station: "신길", line: "1호선" },
         // { station: "대방", line: "1호선" },
@@ -24,6 +25,7 @@ const StationCardSection = () => {
           <Seperator />
         </>
       }
+      ListFooterComponent={<View style={{ height: 60, width: "100%" }} />}
       // refreshing={true}
       ItemSeparatorComponent={() => (
         <View style={{ height: 16, width: "100%" }} />
