@@ -3471,7 +3471,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "690": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "阳村",
     station_cd: "4920",
     station_nm_jpn: "ヤンチョン(陽村)",
@@ -3483,7 +3483,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "691": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "九來",
     station_cd: "4921",
     station_nm_jpn: "クレ(九来)",
@@ -3495,7 +3495,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "692": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "麻山",
     station_cd: "4922",
     station_nm_jpn: "マサン(麻山)",
@@ -3507,7 +3507,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "693": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "场基",
     station_cd: "4923",
     station_nm_jpn: "チャンギ(場基）",
@@ -3519,7 +3519,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "694": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "云阳",
     station_cd: "4924",
     station_nm_jpn: "ウニャン(雲陽）",
@@ -3531,7 +3531,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "695": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "杰浦北边",
     station_cd: "4925",
     station_nm_jpn: "コルポブクビョン(傑浦北邊）",
@@ -3543,7 +3543,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "696": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "沙隅(金浦市厅)",
     station_cd: "4926",
     station_nm_jpn: "サウ(キンポ市庁)",
@@ -3555,7 +3555,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "697": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "丰舞",
     station_cd: "4927",
     station_nm_jpn: "プンム(豊舞）",
@@ -3567,7 +3567,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "698": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "高村",
     station_cd: "4928",
     station_nm_jpn: "コチョン(高村）",
@@ -3579,7 +3579,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "699": {
-    line_num: "김포도시철도",
+    line_num: "김포골드라인",
     station_nm_chn: "金浦机场",
     station_cd: "4929",
     station_nm_jpn: "金浦空港 (キンポ空港)",
@@ -5151,7 +5151,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "941": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "北漢山牛耳",
     station_cd: "4701",
     station_nm_jpn: "プカンサンウイ",
@@ -5163,7 +5163,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "942": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "松林公園",
     station_cd: "4702",
     station_nm_jpn: "ソルバッコンウォン",
@@ -5175,7 +5175,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "943": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "四一九民主墓地",
     station_cd: "4703",
     station_nm_jpn: "サ.イルグミンジュミョジ",
@@ -5187,7 +5187,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "944": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "加五里",
     station_cd: "4704",
     station_nm_jpn: "カオリ",
@@ -5199,7 +5199,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "945": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "華溪",
     station_cd: "4705",
     station_nm_jpn: "ファゲ",
@@ -5211,7 +5211,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "946": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "三陽",
     station_cd: "4706",
     station_nm_jpn: "サミャン",
@@ -5223,7 +5223,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "947": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "三陽사거리",
     station_cd: "4707",
     station_nm_jpn: "サミャンサゴリ",
@@ -5235,7 +5235,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "948": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "松泉",
     station_cd: "4708",
     station_nm_jpn: "ソルセム",
@@ -5247,7 +5247,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "949": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "北漢山輔國門",
     station_cd: "4709",
     station_nm_jpn: "プカンサンボグンムン",
@@ -5259,7 +5259,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "950": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "貞陵",
     station_cd: "4710",
     station_nm_jpn: "チョンヌン",
@@ -5271,7 +5271,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "951": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "誠信女大入口",
     station_cd: "4711",
     station_nm_jpn: "誠信女大入口",
@@ -5283,7 +5283,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "952": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "普門",
     station_cd: "4712",
     station_nm_jpn: "普門",
@@ -5295,7 +5295,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   "953": {
-    line_num: "우이신설경전철",
+    line_num: "우이신설선",
     station_nm_chn: "新設洞",
     station_cd: "4713",
     station_nm_jpn: "新設洞",
@@ -6063,7 +6063,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K826: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "孝昌公園",
     station_cd: "1261",
     station_nm_jpn: "ヒョチャンゴ ンウォンアプ",
@@ -6075,7 +6075,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K321: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "陵谷",
     station_cd: "1271",
     station_nm_jpn: "陵谷",
@@ -6087,7 +6087,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K312: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "孔德",
     station_cd: "1262",
     station_nm_jpn: "孔？",
@@ -6099,7 +6099,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K336: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "雲泉",
     station_cd: "1286",
     station_nm_jpn: "ウシチョシ",
@@ -6111,7 +6111,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K112: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "西氷庫",
     station_cd: "1009",
     station_nm_jpn: "西氷庫",
@@ -6123,7 +6123,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K335: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "汶山",
     station_cd: "1284",
     station_nm_jpn: "汶山",
@@ -6135,7 +6135,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K334: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "坡州",
     station_cd: "1283",
     station_nm_jpn: "坡州",
@@ -6147,7 +6147,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K333: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "月籠",
     station_cd: "1282",
     station_nm_jpn: "月籠",
@@ -6159,7 +6159,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K331: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "金村",
     station_cd: "1280",
     station_nm_jpn: "金村",
@@ -6171,7 +6171,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K330: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "金陵",
     station_cd: "1279",
     station_nm_jpn: "金陵",
@@ -6183,7 +6183,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K329: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "云井",
     station_cd: "1278",
     station_nm_jpn: "雲井",
@@ -6195,7 +6195,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K328: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "野塘",
     station_cd: "1277",
     station_nm_jpn: "ヤダン",
@@ -6207,7 +6207,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K327: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "炭峴",
     station_cd: "1276",
     station_nm_jpn: "炭峴",
@@ -6219,7 +6219,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K326: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "一山",
     station_cd: "1275",
     station_nm_jpn: "一山",
@@ -6231,7 +6231,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K325: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "楓山",
     station_cd: "1274",
     station_nm_jpn: "楓山",
@@ -6243,7 +6243,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K324: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "白馬",
     station_cd: "1273",
     station_nm_jpn: "白馬",
@@ -6255,7 +6255,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K323: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "谷山",
     station_cd: "1272",
     station_nm_jpn: "谷山",
@@ -6267,7 +6267,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K320: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "幸信",
     station_cd: "1270",
     station_nm_jpn: "幸信",
@@ -6279,7 +6279,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K319: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "江梅",
     station_cd: "1269",
     station_nm_jpn: "カンメ",
@@ -6291,7 +6291,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K317: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "水色",
     station_cd: "1267",
     station_nm_jpn: "水色",
@@ -6303,7 +6303,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K316: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "數碼媒體城",
     station_cd: "1266",
     station_nm_jpn: "デジタルメディアシティ",
@@ -6315,7 +6315,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K315: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "加佐",
     station_cd: "1265",
     station_nm_jpn: "加佐",
@@ -6327,7 +6327,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K314: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "弘益大學",
     station_cd: "1264",
     station_nm_jpn: "弘大入口",
@@ -6339,7 +6339,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K313: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "西江大學",
     station_cd: "1263",
     station_nm_jpn: "西江大",
@@ -6351,7 +6351,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   P312: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "新村",
     station_cd: "1252",
     station_nm_jpn: "新村",
@@ -6363,7 +6363,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   P313: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "首爾站",
     station_cd: "1251",
     station_nm_jpn: "ソウル驛",
@@ -6375,7 +6375,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K138: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "砥平",
     station_cd: "1220",
     station_nm_jpn: "砥平",
@@ -6387,7 +6387,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K137: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "龍門",
     station_cd: "1219",
     station_nm_jpn: "龍門",
@@ -6399,7 +6399,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K136: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "元德",
     station_cd: "1218",
     station_nm_jpn: "元德",
@@ -6411,7 +6411,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K135: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "楊平",
     station_cd: "1217",
     station_nm_jpn: "楊平",
@@ -6423,7 +6423,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K134: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "梧濱",
     station_cd: "1216",
     station_nm_jpn: "梧濱",
@@ -6435,7 +6435,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K133: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "我新",
     station_cd: "1215",
     station_nm_jpn: "我新",
@@ -6447,7 +6447,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K132: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "菊秀",
     station_cd: "1214",
     station_nm_jpn: "菊秀",
@@ -6459,7 +6459,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K131: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "新院",
     station_cd: "1213",
     station_nm_jpn: "新院",
@@ -6471,7 +6471,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K130: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "兩水",
     station_cd: "1212",
     station_nm_jpn: "兩水",
@@ -6483,7 +6483,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K129: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "雲吉山",
     station_cd: "1211",
     station_nm_jpn: "雲吉山",
@@ -6495,7 +6495,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K128: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "八堂",
     station_cd: "1210",
     station_nm_jpn: "八堂",
@@ -6507,7 +6507,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K127: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "陶深",
     station_cd: "1209",
     station_nm_jpn: "陶深",
@@ -6519,7 +6519,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K126: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "德沼",
     station_cd: "1208",
     station_nm_jpn: "德沼",
@@ -6531,7 +6531,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K116: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "往十里",
     station_cd: "1013",
     station_nm_jpn: "往十里",
@@ -6543,7 +6543,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K125: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "養正",
     station_cd: "1207",
     station_nm_jpn: "養正",
@@ -6555,7 +6555,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K124: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "陶農",
     station_cd: "1206",
     station_nm_jpn: "陶農",
@@ -6567,7 +6567,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K123: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "九里",
     station_cd: "1205",
     station_nm_jpn: "九里",
@@ -6579,7 +6579,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K122: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "養源",
     station_cd: "1204",
     station_nm_jpn: "養源",
@@ -6591,7 +6591,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K121: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "忘憂",
     station_cd: "1203",
     station_nm_jpn: "忘憂",
@@ -6603,7 +6603,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K120: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "上鳳",
     station_cd: "1202",
     station_nm_jpn: "上鳳",
@@ -6615,7 +6615,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K119: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "中浪",
     station_cd: "1201",
     station_nm_jpn: "中浪",
@@ -6627,7 +6627,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K118: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "回基",
     station_cd: "101C",
     station_nm_jpn: "回基",
@@ -6639,7 +6639,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K117: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "淸凉里",
     station_cd: "1014",
     station_nm_jpn: "淸凉里",
@@ -6651,7 +6651,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K115: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "鷹峰",
     station_cd: "1012",
     station_nm_jpn: "鷹峰",
@@ -6663,7 +6663,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K114: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "玉水",
     station_cd: "1011",
     station_nm_jpn: "オクス",
@@ -6675,7 +6675,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K113: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "漢南",
     station_cd: "1010",
     station_nm_jpn: "漢南",
@@ -6687,7 +6687,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K110: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "龍山",
     station_cd: "100C",
     station_nm_jpn: "龍山",
@@ -6699,7 +6699,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K111: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "二村",
     station_cd: "1008",
     station_nm_jpn: "二村",
@@ -6711,7 +6711,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K318: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "花田",
     station_cd: "1268",
     station_nm_jpn: "花田",
@@ -6723,7 +6723,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     },
   },
   K322: {
-    line_num: "경의선",
+    line_num: "경의중앙선",
     station_nm_chn: "大谷",
     station_cd: "0300",
     station_nm_jpn: "大谷",
