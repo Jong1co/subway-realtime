@@ -6,12 +6,13 @@ export const Card = styled.View`
   flex: 1;
   border: 1px solid ${({ theme }) => theme.colors.secondary_300};
 `;
-export const TitleSection = styled.View`
+export const TitleSection = styled.View<{ color: string }>`
   flex-direction: row;
   align-items: center;
   flex: 1;
   justify-content: space-between;
-  background-color: #0052a4;
+  background-color: ${({ theme, color }) =>
+    theme.colors[color as keyof typeof theme.colors]};
   padding: 12px 16px 8px 16px;
 `;
 

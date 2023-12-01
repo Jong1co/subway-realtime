@@ -9,6 +9,7 @@ import Header from "../components/_common/Header/Header";
 import SearchBar from "../components/_common/SearchBar/SearchBar";
 import { LineName } from "../components/_common/LineBadge/LineBadge";
 import { HeaderTitle } from "../components/_common/Header/HeaderTitle";
+import { SvgIcon } from "../components/_common/SvgIcon/SvgIcon";
 
 export type RootStackParamList = {
   Home: undefined;
@@ -46,13 +47,11 @@ const Router = () => {
                 <Header
                   left={
                     <TouchableOpacity
-                      onPress={() => navigation.goBack()}
-                      style={{
-                        width: 24,
-                        height: 24,
-                        backgroundColor: "gray",
-                      }}
-                    />
+                      onPress={navigation.goBack}
+                      activeOpacity={0.9}
+                    >
+                      <SvgIcon name="Back" width={24} height={24} />
+                    </TouchableOpacity>
                   }
                   title={<HeaderTitle>{station}</HeaderTitle>}
                 />
@@ -69,9 +68,11 @@ const Router = () => {
                 <Header
                   left={
                     <TouchableOpacity
-                      onPress={() => navigation.goBack()}
-                      style={{ width: 24, height: 24, backgroundColor: "gray" }}
-                    />
+                      onPress={navigation.goBack}
+                      activeOpacity={0.9}
+                    >
+                      <SvgIcon name="Back" width={24} height={24} />
+                    </TouchableOpacity>
                   }
                   title={<SearchBar />}
                 />

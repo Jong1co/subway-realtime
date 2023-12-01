@@ -11,7 +11,10 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { hashKey } from "../../utils/hashKey";
-import { LineName } from "../_common/LineBadge/LineBadge";
+import {
+  LineName,
+  lineInfo as lineColorInfo,
+} from "../_common/LineBadge/LineBadge";
 
 type Props = {
   currentStation: string;
@@ -79,7 +82,7 @@ const StationLineCard = ({
 
   return (
     <Style.Card key={destination}>
-      <Style.TitleSection>
+      <Style.TitleSection color={lineColorInfo[line].color}>
         <Style.TitleBox>
           <Style.NextStation>{nextStation} 방면</Style.NextStation>
           <Style.Direction>({destination})</Style.Direction>
@@ -91,10 +94,11 @@ const StationLineCard = ({
       </Style.TitleSection>
       <Style.Content>
         {lineInfo.map(({ list, nextStation, direction }, i) => {
-          const isUphill = direction === "상행";
+          const isUphill = direction === "상행" || direction === "외선";
 
           return (
             <StationLine
+              color={lineColorInfo[line].color}
               key={nextStation + i}
               list={isUphill ? [...list].reverse() : list}
               currentStation={currentStation}

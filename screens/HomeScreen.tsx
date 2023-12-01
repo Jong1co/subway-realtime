@@ -14,6 +14,7 @@ import StationCardSection from "../components/StationCardSection/StationCardSect
 import * as Style from "../components/Home/styles";
 import BookmarkSection from "../components/BookmarkSection/BookmarkSection";
 import Seperator from "../components/_common/Seperator";
+import { SvgIcon } from "../components/_common/SvgIcon/SvgIcon";
 
 export type RunningSubwayInfo = {
   currentPosition: string;
@@ -86,8 +87,10 @@ export default function HomeScreen({
             right={
               <TouchableOpacity
                 onPress={() => navigation.navigate("Search")}
-                style={{ width: 24, height: 24, backgroundColor: "gray" }}
-              />
+                activeOpacity={9}
+              >
+                <SvgIcon name="Search" width={24} height={24} />
+              </TouchableOpacity>
             }
           />
         );

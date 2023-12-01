@@ -54,7 +54,6 @@ export class LineServiceImpl implements LineService {
       } else {
         createdLine = line.list.slice(index, index + 5);
       }
-      console.log(createdLine, line.destination);
 
       if (createdLine.length < 5) {
         let i = 1;
@@ -98,8 +97,6 @@ export class LineServiceImpl implements LineService {
           targetStation.destination += `, ${line.destination}`;
       }
     });
-
-    console.log(result);
 
     return result.reduce((accr, curr) => {
       const { destination, ...rest } = curr;

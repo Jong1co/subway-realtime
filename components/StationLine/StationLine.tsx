@@ -1,13 +1,20 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { colors } from "../../styles/colors";
 
 type Props = {
   list: string[];
   currentStation: string;
   runningSubwayList: string[];
+  color: string;
 };
 
-const StationLine = ({ list, currentStation, runningSubwayList }: Props) => {
+const StationLine = ({
+  list,
+  currentStation,
+  runningSubwayList,
+  color,
+}: Props) => {
   return (
     <View
       style={{
@@ -25,7 +32,7 @@ const StationLine = ({ list, currentStation, runningSubwayList }: Props) => {
           width: "80%",
           left: "10%",
           position: "absolute",
-          backgroundColor: "#0052A4",
+          backgroundColor: colors[color as keyof typeof colors],
         }}
       />
       {list.map((item) => {
@@ -74,7 +81,7 @@ const StationLine = ({ list, currentStation, runningSubwayList }: Props) => {
                 width: 12,
                 height: 12,
                 borderRadius: 6,
-                backgroundColor: "#0052A4",
+                backgroundColor: colors[color as keyof typeof colors],
                 // flex: 1,
                 justifyContent: "center",
                 alignItems: "center",

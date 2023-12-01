@@ -5,6 +5,7 @@ import { BookmarkInfo } from "../BookmarkSection/BookmarkSection";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../router/Router";
+import { SvgIcon } from "../_common/SvgIcon/SvgIcon";
 
 type Props = BookmarkInfo;
 type RootStackNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -24,7 +25,7 @@ const Bookmark = ({
     >
       <Style.CardTitle>
         <Style.DirectionWrapper>
-          <Style.Icon />
+          <SvgIcon name="Star_on" width={16} height={16} />
           <Style.Direction>{arrivalStation}</Style.Direction>
         </Style.DirectionWrapper>
         <Style.ArrivalTime>{arrivalTime}</Style.ArrivalTime>
@@ -33,7 +34,7 @@ const Bookmark = ({
       <Style.CardContent>
         <LineBadge line={line} size="sm" />
         <Style.CurrentStation>{station}</Style.CurrentStation>
-        <Style.Arrow />
+        <SvgIcon name="DoubleArrow" width={16} height={16} />
         <Style.NextStation>{nextStation}</Style.NextStation>
       </Style.CardContent>
     </Style.Card>
