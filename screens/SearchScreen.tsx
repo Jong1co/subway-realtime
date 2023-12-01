@@ -1,74 +1,54 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useMemo } from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import { RootStackParamList } from "../router/Router";
-import { stationInfo } from "../repository/data/StationInfo";
-import { useRecoilValue } from "recoil";
-import { searchState } from "../atom/searchState";
-import { LineName } from "../components/_common/LineBadge/LineBadge";
-import { isAvailableLine } from "../repository/data/isAvailableLine";
+import { StatusBar } from "expo-status-bar";
+import useSearchText from "../hooks/useSearchState";
+
+import * as Style from "../components/Search/styles";
+import getAvailableStationList from "../utils/getAvailableStationList";
+import LineBadge, { LineName } from "../components/_common/LineBadge/LineBadge";
 
 const SearchScreen = ({
   navigation,
 }: NativeStackScreenProps<RootStackParamList, "Search">) => {
-  const searchValue = useRecoilValue(searchState);
+  const [searchText] = useSearchText();
 
-  const stationList = useMemo(() => {
-    const hash = Object.entries(stationInfo).reduce((accr, [id, station]) => {
-      const { station_nm, line_num } = station;
-      // 이용 불가능한 노선은 제외
-      if (!isAvailableLine(line_num)) return accr;
+  const stationList = useMemo(getAvailableStationList, []);
 
-      accr[station_nm]
-        ? accr[station_nm].push(line_num as LineName)
-        : (accr[station_nm] = [line_num as LineName]);
+  const filterStationBySearchText = (searchText: string) => {
+    return stationList.filter(({ station }) =>
+      `${station}역`.includes(searchText)
+    );
+  };
 
-      return accr;
-    }, {} as { [station in string]: LineName[] });
-
-    return Object.entries(hash).map(([station, lines]) => {
-      lines.sort();
-      return { station, lines };
-    });
-  }, []);
-
-  const filterStationBySearchText = (searchValue: string) => {
-    return stationList.filter(({ station }) => station.includes(searchValue));
+  const moveToDetailPage = (stationInfo: {
+    station: string;
+    lines: LineName[];
+  }) => {
+    navigation.navigate("Detail", stationInfo);
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "white" }}>
+    <View style={{ flex: 1, backgroundColor: "white", paddingTop: 16 }}>
       <FlatList
         style={{ marginHorizontal: 16, flex: 1 }}
-        data={filterStationBySearchText(searchValue)}
-        ListHeaderComponent={() => (
-          <View style={{ height: 16, width: "100%" }} />
-        )}
+        data={filterStationBySearchText(searchText)}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Detail", {
-                station: item.station,
-                lines: item.lines,
-              });
-            }}
-            style={{
-              paddingHorizontal: 4,
-              paddingVertical: 16,
-              borderBottomWidth: 1,
-              borderBottomColor: "#F2F2F2",
-              flex: 1,
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Text>{item.station}</Text>
-            <Text>{item.lines.join(",")}</Text>
-          </TouchableOpacity>
+          <Style.StationListItem onPress={() => moveToDetailPage(item)}>
+            <Style.StationTitle>{item.station}역</Style.StationTitle>
+            <Style.LineWrapper>
+              {item.lines.map((line) => (
+                <View key={line} style={{ marginLeft: 4 }}>
+                  <LineBadge line={line} />
+                </View>
+              ))}
+            </Style.LineWrapper>
+          </Style.StationListItem>
         )}
         keyExtractor={({ station }) => station}
       />
+      <StatusBar style="auto" />
     </View>
   );
 };

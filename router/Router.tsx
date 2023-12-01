@@ -5,7 +5,6 @@ import HomeScreen from "../screens/HomeScreen";
 import DetailScreen from "../screens/DetailScreen";
 import { TouchableOpacity } from "react-native";
 import SearchScreen from "../screens/SearchScreen";
-import { Dimensions } from "react-native";
 import Header from "../components/_common/Header/Header";
 import SearchBar from "../components/_common/SearchBar/SearchBar";
 import { LineName } from "../components/_common/LineBadge/LineBadge";

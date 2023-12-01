@@ -1,14 +1,10 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreens from "./screens/HomeScreen";
 import { ThemeProvider } from "styled-components";
-import DetailScreen from "./screens/DetailScreen";
 import Router from "./router/Router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { theme } from "./styles/theme";
-import { useEffect, useState } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RecoilRoot } from "recoil";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -19,6 +15,7 @@ export default function App() {
         <ThemeProvider theme={theme}>
           <SafeAreaProvider>
             <Router />
+            <StatusBar style="auto" />
           </SafeAreaProvider>
         </ThemeProvider>
       </RecoilRoot>

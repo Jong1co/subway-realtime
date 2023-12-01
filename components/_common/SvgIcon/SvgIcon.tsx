@@ -25,8 +25,6 @@ export function SvgIcon({
     ...(width !== undefined ? { width } : {}),
     ...(height !== undefined ? { height } : {}),
   };
-  // console.log("comp:", Comp);
 
-  return null;
-  // return <Comp {...props} fill={fill} {...sizeProps} />;
+  return <Comp {...props} fill={fill} {...sizeProps} />;
 }

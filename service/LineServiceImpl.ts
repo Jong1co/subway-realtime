@@ -42,7 +42,20 @@ export class LineServiceImpl implements LineService {
         return;
       }
 
-      const createdLine = line.list.slice(index, index + 5);
+      let createdLine: string[] = [];
+
+      // console.log(line.direction, line.list);
+      if (this.lineCode === "1002" && line.list.length > 10) {
+        while (createdLine.length < 5) {
+          createdLine.push(
+            line.list[(index + createdLine.length) % line.list.length]
+          );
+        }
+      } else {
+        createdLine = line.list.slice(index, index + 5);
+      }
+      console.log(createdLine, line.destination);
+
       if (createdLine.length < 5) {
         let i = 1;
         while (createdLine.length < 5) {
@@ -51,7 +64,12 @@ export class LineServiceImpl implements LineService {
         }
       }
 
-      const isLastStation = line.list.indexOf(this.station) === 0;
+      const isLastStation =
+        (this.lineCode !== "1002" && line.list.indexOf(this.station) === 0) ||
+        (this.lineCode === "1002" &&
+          line.list.length < 10 &&
+          line.list.indexOf(this.station) === 0);
+
       const isThreeLineStation = this._threeLineStation.includes(this.station);
       const isTwoLineStation = this._twoLineStation.includes(this.station);
 
@@ -69,7 +87,7 @@ export class LineServiceImpl implements LineService {
         result.push({
           list: createdLine,
           destination: line.destination,
-          nextStation: line.list[index - 1],
+          nextStation: line.list[index - 1] ?? line.list.at(-1),
           direction: line.direction,
         });
       } else if (isExistRoute) {

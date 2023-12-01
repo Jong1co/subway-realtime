@@ -62,4 +62,12 @@ export class StorageBookmarkRepository implements BookmarkRepository {
       console.error(e);
     }
   };
+
+  removeAll = async () => {
+    try {
+      await this.asyncStorage.setItem("bookmarks", JSON.stringify([]));
+    } catch (e) {
+      console.error(e);
+    }
+  };
 }

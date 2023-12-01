@@ -11,7 +11,12 @@ type Props = {
 const BookmarkButton = ({ isActive, onPress }: Props) => {
   return (
     <Style.Button isActive={isActive} onPress={onPress} activeOpacity={0.8}>
-      <SvgIcon name="Star" width={16} height={16} fill={"black"} />
+      <SvgIcon
+        name={isActive ? "Star_on" : "Star"}
+        width={16}
+        height={16}
+        fill={isActive ? "#8E2DEF" : "white"}
+      />
       <Style.ButtonText isActive={isActive}>즐겨찾기</Style.ButtonText>
     </Style.Button>
   );

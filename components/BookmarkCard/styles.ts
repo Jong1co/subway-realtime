@@ -1,4 +1,7 @@
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
+
+const ScreenWidth = Dimensions.get("screen").width;
 
 export const Card = styled.TouchableOpacity`
   padding: 8px 12px;
@@ -6,7 +9,7 @@ export const Card = styled.TouchableOpacity`
   height: auto;
   background-color: ${({ theme }) => theme.colors.secondary_200};
   border-radius: 12px;
-  /* height: 54px; */
+  height: 54px;
 `;
 
 export const CardTitle = styled.View`
@@ -58,4 +61,20 @@ export const Arrow = styled.View`
 
 export const NextStation = styled.Text`
   ${({ theme }) => theme.font.body_3}
+`;
+
+export const EmptyText = styled.Text`
+  color: ${({ theme }) => theme.colors.secondary_600};
+  ${({ theme }) => theme.font.subhead_2}
+`;
+
+export const EmptyCard = styled.TouchableOpacity`
+  padding: 8px 12px;
+  background-color: ${({ theme }) => theme.colors.secondary_200};
+  border-radius: 12px;
+  height: 54px;
+  flex: 1;
+  width: ${ScreenWidth - 32}px;
+  justify-content: center;
+  align-items: center;
 `;

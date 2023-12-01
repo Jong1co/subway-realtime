@@ -376,7 +376,7 @@ const 모란_암사 = [
 const 까치산_신도림 = ["까치산", "신정네거리", "양천구청", "도림천", "신도림"];
 const 성수_신설동 = ["성수", "용답", "신답", "용두", "신설동"];
 
-const 성수_성수 = [
+const 성수_뚝섬 = [
   "성수",
   "건대입구",
   "구의",
@@ -788,16 +788,16 @@ export const routeStore: Record<
   "1002": {
     lineList: [
       //순환선 어떻게 처리할지 고민해야 함
-      // {
-      //   list: [...인천_소요산].reverse(),
-      //   destination: "소요산",
-      //   direction: "상행",
-      // },
-      // {
-      //   list: [...신창_소요산].reverse(),
-      //   destination: "소요산",
-      //   direction: "상행",
-      // },
+      {
+        list: 성수_뚝섬,
+        destination: "외선",
+        direction: "외선",
+      },
+      {
+        list: [...성수_뚝섬].reverse(),
+        destination: "내선",
+        direction: "내선",
+      },
       //
 
       {

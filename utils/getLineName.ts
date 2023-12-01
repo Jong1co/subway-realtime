@@ -30,13 +30,11 @@ export const getLineName = (lineId: LineId) => {
       return "수인분당선";
     case "1077":
       return "신분당선";
-    case "1078":
-      return "의정부경전철";
-    case "1079":
+    case "1092":
       return "우이신설선";
     case "1081":
       return "경강선";
-    case "1082":
+    case "1093":
       return "서해선";
     default:
       return "호선 정보 없음";

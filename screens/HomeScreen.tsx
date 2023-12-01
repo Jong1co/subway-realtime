@@ -74,13 +74,6 @@ export default function HomeScreen({
 
     const realtimeArrivalList: RealTimeArrival[] = data.realtimeArrivalList;
 
-    // const mappedArrivalList = realtimeArrivalList.map((subway) => {
-    //   return {
-    //     currentPosition: subway.arvlMsg3,
-    //     arrivalPosition: subway.arvlMsg2,
-    //   };
-    // });
-
     setRunningSubwayList(realtimeArrivalList);
   };
 
@@ -100,7 +93,7 @@ export default function HomeScreen({
         );
       },
     });
-    // onReachedLastItem({ station_nm: "삼산체육관" });
+    // onReachedLastItem({ station_nm: "영등포" });
   }, []);
 
   return (
@@ -109,15 +102,8 @@ export default function HomeScreen({
         backgroundColor: "white",
         flex: 1,
         width: "100%",
-        // paddingHorizontal: 16,
-        // paddingVertical: 24,
       }}
     >
-      {/* <BookmarkButton /> */}
-      {/* <Button
-        title="요청"
-        onPress={() => onReachedLastItem({ station_nm: "삼산체육관" })}
-      /> */}
       <StationCardSection
         LineHeaderComponent={
           <>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as Style from "./styles";
 import BookmarkCard from "../BookmarkCard/BookmarkCard";
 import { FlatList, View } from "react-native";
@@ -6,6 +6,8 @@ import { LineName } from "../_common/LineBadge/LineBadge";
 import { useQuery } from "@tanstack/react-query";
 import { Bookmark, StorageBookmarkRepository } from "../../api/bookmark";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { hashKey } from "../../utils/hashKey";
+import BookmarkEmpty from "../BookmarkCard/BookmarkEmpty";
 
 export type BookmarkInfo = {
   arrivalStation: string; // 데이터 받아와서 넣어줄것임
@@ -15,8 +17,12 @@ export type BookmarkInfo = {
   nextStation: string; // 데이터 로컬에 저장
 };
 
+const bookmarkRepository = new StorageBookmarkRepository(AsyncStorage);
+
 const BookmarkSection = () => {
-  const bookmarkRepository = new StorageBookmarkRepository(AsyncStorage);
+  // useEffect(() => {
+  //   bookmarkRepository.removeAll();
+  // }, []);
 
   const { data: bookmarks } = useQuery<Bookmark[]>({
     queryKey: ["bookmarks"],
@@ -35,10 +41,14 @@ const BookmarkSection = () => {
       <Style.Title>즐겨찾기</Style.Title>
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={bookmarkList}
+        contentContainerStyle={{ paddingHorizontal: 16 }}
         ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
         renderItem={({ item }) => <BookmarkCard {...item} />}
-        keyExtractor={(item) => item.arrivalStation + item.line}
+        keyExtractor={(item) => hashKey(item)}
+        ListEmptyComponent={BookmarkEmpty}
+        scrollEnabled={bookmarkList.length > 0}
       />
     </Style.Section>
   );
