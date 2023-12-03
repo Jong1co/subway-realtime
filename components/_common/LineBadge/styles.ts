@@ -10,7 +10,7 @@ export const Badge = styled.View<{ color: string; size: "md" | "sm" }>`
 `;
 
 export const BadgeText = styled.Text<{ size: "md" | "sm" }>`
-  font-size: ${({ size, theme }) =>
+  ${({ size, theme }) =>
     size === "md" ? theme.font.subhead_1 : theme.font.subhead_4};
 
   color: ${({ theme }) => theme.colors.secondary_white};
