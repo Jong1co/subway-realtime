@@ -74,8 +74,6 @@ export const lineInfo = {
   },
 };
 
-console.log("==", Object.keys(lineInfo));
-
 export type LineName = keyof typeof lineInfo;
 
 type Props = {
@@ -84,7 +82,7 @@ type Props = {
 };
 
 const LineBadge = ({ line, size = "md" }: Props) => {
-  const { color, text } = lineInfo[line];
+  const { color, text } = lineInfo[line] || { color: "", text: "" };
   return (
     <Style.Badge color={color} size={size}>
       <Style.BadgeText size={size}>{text}</Style.BadgeText>

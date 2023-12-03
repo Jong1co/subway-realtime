@@ -1,22 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import { TouchableOpacity, Animated, View, Text } from "react-native";
+import { View } from "react-native";
 import * as Style from "./styles";
-import useReloadButton from "../../../hooks/useReloadButton";
-import {
-  CountdownCircleTimer,
-  useCountdown,
-} from "react-native-countdown-circle-timer";
+import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { SvgIcon } from "../SvgIcon/SvgIcon";
 
 type Props = {
+  refreshing: boolean;
   onPress: () => void;
 };
 
-const ReloadButton = ({ onPress }: Props) => {
-  const scrolling = useRef(new Animated.Value(0)).current;
-  const [isActive] = useReloadButton();
-
+const ReloadButton = ({ onPress, refreshing }: Props) => {
   const [on, setOn] = useState(true);
+
+  useEffect(() => {
+    if (refreshing) {
+      setOn(false);
+    }
+  }, [refreshing]);
 
   useEffect(() => {
     if (!on) {
@@ -42,7 +42,7 @@ const ReloadButton = ({ onPress }: Props) => {
           isPlaying
           duration={15}
           onComplete={() => {
-            onPress();
+            // onPress();
             return { shouldRepeat: true };
           }}
           isGrowing

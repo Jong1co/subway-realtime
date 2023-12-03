@@ -17,9 +17,10 @@ export function findStationByDistance(
     );
 
     if (calculatedDistance < distance) {
-      stationList.push(station);
+      stationList.push({ ...station, distance: calculatedDistance });
     }
   }
+  stationList.sort((a, b) => a.distance - b.distance);
 
   return stationList;
 }

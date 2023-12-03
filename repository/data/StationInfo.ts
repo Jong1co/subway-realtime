@@ -6950,18 +6950,18 @@ export const stationInfo: Record<StationId, StationInfo> = {
       lng: 127.58933,
     },
   },
-  P116: {
-    line_num: "경춘선",
-    station_nm_chn: "",
-    station_cd: "1305",
-    station_nm_jpn: "",
-    station_nm_eng: "Kwangwoon Univ.",
-    station_nm: "광운대",
-    coordinate: {
-      lat: 37.623632,
-      lng: 127.061835,
-    },
-  },
+  // P116: {
+  //   line_num: "경춘선",
+  //   station_nm_chn: "",
+  //   station_cd: "1305",
+  //   station_nm_jpn: "",
+  //   station_nm_eng: "Kwangwoon Univ.",
+  //   station_nm: "광운대",
+  //   coordinate: {
+  //     lat: 37.623632,
+  //     lng: 127.061835,
+  //   },
+  // },
   P117: {
     line_num: "경춘선",
     station_nm_chn: "淸凉里",

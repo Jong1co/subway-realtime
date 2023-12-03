@@ -5,6 +5,9 @@ import { theme } from "./styles/theme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RecoilRoot } from "recoil";
 import { StatusBar } from "expo-status-bar";
+import AppLoadingContext from "./context/AppLoadingContext";
+
+// import AppLoadingContext from "./context/AppLoadingContext";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -14,8 +17,10 @@ export default function App() {
       <RecoilRoot>
         <ThemeProvider theme={theme}>
           <SafeAreaProvider>
-            <Router />
-            <StatusBar style="auto" />
+            <AppLoadingContext>
+              <Router />
+              <StatusBar style="auto" />
+            </AppLoadingContext>
           </SafeAreaProvider>
         </ThemeProvider>
       </RecoilRoot>

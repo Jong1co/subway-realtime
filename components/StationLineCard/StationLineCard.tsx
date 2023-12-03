@@ -25,7 +25,7 @@ type Props = {
     nextStation: string;
     direction: string;
   }[];
-  runningSubwayList: string[];
+  runningSubwayList: { currentStation: string; lastStation: string }[];
 };
 
 const StationLineCard = ({
@@ -79,6 +79,8 @@ const StationLineCard = ({
       addBookmark(bookmarkData);
     }
   };
+
+  // console.log(runningSubwayList);
 
   return (
     <Style.Card key={destination}>

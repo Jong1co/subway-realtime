@@ -38,7 +38,7 @@ export const Direction = styled.Text`
 export const ArrivalTime = styled.Text`
   margin-left: 12px;
   color: ${({ theme }) => theme.colors.primary};
-  ${({ theme }) => theme.font.subhead_4}
+  ${({ theme }) => theme.font.subhead_4};
 `;
 
 export const CardContent = styled.View`

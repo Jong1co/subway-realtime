@@ -17,7 +17,7 @@ export const TitleSection = styled.View<{ color: string }>`
 `;
 
 export const NextStation = styled.Text`
-  ${({ theme }) => theme.font.subhead_1}
+  ${({ theme }) => theme.font.subhead_1};
   color: ${({ theme }) => theme.colors.secondary_white};
 `;
 

@@ -1,4 +1,5 @@
 module.exports = {
+  assets: ["./assets/font/"],
   dependencies: {
     "react-native-sqlite-storage": {
       platforms: {

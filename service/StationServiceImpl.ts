@@ -8,66 +8,7 @@ import { getLineName } from "../utils/getLineName";
  *
  */
 export class StationServiceImpl implements StationService {
-  private lineInfo = {
-    "1001": {
-      0: {
-        소요산: [
-          "소요산",
-          "동두천",
-          "양주",
-          "의정부",
-          "광운대",
-          "서울역",
-          "청량리",
-          "동묘앞",
-          "용산",
-          "영등포",
-        ],
-      },
-      1: {
-        인천: ["인천", "동인천", "부평"],
-        신창: ["구로", "서동탄", "병점", "천안", "신창", "광명"],
-      },
-    },
-  };
-
   constructor(private realTimeArrival: RealTimeArrival) {}
-
-  private getDirection() {
-    if (!this.realTimeArrival.ordkey || !this.realTimeArrival.ordkey[1]) {
-      throw new Error("ordkey가 없습니다.");
-    }
-
-    const line = this.realTimeArrival.subwayId;
-    const direction = this.realTimeArrival.ordkey[0];
-    const arrivalStation = this.realTimeArrival.bstatnNm;
-
-    if (!this.lineInfo[line as keyof typeof this.lineInfo]) {
-      throw new Error("존재하지 않는 호선정보입니다.");
-    }
-
-    const obj: Record<string, string[]> =
-      this.lineInfo[line as keyof typeof this.lineInfo][direction as "0" | "1"];
-
-    const entries = Object.entries(obj);
-
-    //역이 한 개일 경우
-    if (entries.length === 1) {
-      return entries[0][0];
-    }
-
-    //역이 두 개 이상일 경우
-
-    const stationName = entries.find(([_, stationList]) =>
-      stationList.includes(arrivalStation.split(" ")[0])
-    );
-
-    if (!stationName) {
-      throw new Error("존재하지 않는 역 정보 입니다.");
-    }
-
-    return stationName[0];
-  }
 
   private getArrivalTime() {
     const seconds = Number(this.realTimeArrival.barvlDt || "0");
@@ -76,11 +17,18 @@ export class StationServiceImpl implements StationService {
   }
 
   private getNextStation() {
-    return this.realTimeArrival.trainLineNm.split(" ")[2];
+    return this.realTimeArrival.trainLineNm
+      .split(" ")[2]
+      .replace(/\([^)]*\)/g, "")
+      .replace("방면", "");
   }
 
-  get direction() {
-    return this.getDirection();
+  private getCurrentStation() {
+    return this.realTimeArrival.arvlMsg3;
+  }
+
+  private getLastStation() {
+    return this.realTimeArrival.bstatnNm;
   }
 
   get line() {
@@ -96,38 +44,71 @@ export class StationServiceImpl implements StationService {
   get arrivalTime() {
     return this.getArrivalTime();
   }
+
+  get currentStation() {
+    return this.getCurrentStation();
+  }
+
+  get lastStation() {
+    return this.getLastStation();
+  }
 }
 
-// lineInfo = {
+// private getDirection() {
+//   if (!this.realTimeArrival.ordkey || !this.realTimeArrival.ordkey[1]) {
+//     throw new Error("ordkey가 없습니다.");
+//   }
+
+//   const line = this.realTimeArrival.subwayId;
+//   const direction = this.realTimeArrival.ordkey[0];
+//   const arrivalStation = this.realTimeArrival.bstatnNm;
+
+//   if (!this.lineInfo[line as keyof typeof this.lineInfo]) {
+//     throw new Error("존재하지 않는 호선정보입니다.");
+//   }
+
+//   const obj: Record<string, string[]> =
+//     this.lineInfo[line as keyof typeof this.lineInfo][direction as "0" | "1"];
+
+//   const entries = Object.entries(obj);
+
+//   //역이 한 개일 경우
+//   if (entries.length === 1) {
+//     return entries[0][0];
+//   }
+
+//   //역이 두 개 이상일 경우
+
+//   const stationName = entries.find(([_, stationList]) =>
+//     stationList.includes(arrivalStation.split(" ")[0])
+//   );
+
+//   if (!stationName) {
+//     throw new Error("존재하지 않는 역 정보 입니다.");
+//   }
+
+//   return stationName[0];
+// }
+
+// private lineInfo = {
 //   "1001": {
 //     0: {
-//       // 소요산: [
-//       소요산: "소요산",
-//       동두천: "소요산",
-//       양주: "소요산",
-//       의정부: "소요산",
-//       광운대: "소요산",
-//       서울역: "소요산",
-//       청량리: "소요산",
-//       동묘앞: "소요산",
-//       // ],
+//       소요산: [
+//         "소요산",
+//         "동두천",
+//         "양주",
+//         "의정부",
+//         "광운대",
+//         "서울역",
+//         "청량리",
+//         "동묘앞",
+//         "용산",
+//         "영등포",
+//       ],
 //     },
 //     1: {
-//       인천: "인천",
-//       동인천: "인천",
-//       부평: "인천",
-//       // 인천: ["인천", "동인천", "부평"],
-
-//       // 천안: [
-//       구로: "천안",
-//       서동탄: "천안",
-//       병점: "천안",
-//       천안: "천안",
-//       용산: "천안",
-//       광명: "천안",
-//       영등포: "천안",
-//       신창: "천안",
-//       // ],
+//       인천: ["인천", "동인천", "부평"],
+//       신창: ["구로", "서동탄", "병점", "천안", "신창", "광명"],
 //     },
 //   },
 // };

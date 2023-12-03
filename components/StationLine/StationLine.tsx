@@ -5,7 +5,7 @@ import { colors } from "../../styles/colors";
 type Props = {
   list: string[];
   currentStation: string;
-  runningSubwayList: string[];
+  runningSubwayList: { currentStation: string; lastStation: string }[];
   color: string;
 };
 
@@ -56,7 +56,10 @@ const StationLine = ({
               // width: `${100 / findLine().length}%`,
             }}
           >
-            {runningSubwayList.includes(item) ? (
+            {runningSubwayList.find(
+              ({ currentStation: runningSubwayStation }) =>
+                runningSubwayStation === item
+            ) ? (
               <View
                 style={{
                   width: 24,
