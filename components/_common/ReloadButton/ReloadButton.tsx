@@ -1,37 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import * as Style from "./styles";
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 import { SvgIcon } from "../SvgIcon/SvgIcon";
 
 type Props = {
-  refreshing: boolean;
+  pause: boolean;
   onPress: () => void;
 };
 
-const ReloadButton = ({ onPress, refreshing }: Props) => {
+const ReloadButton = ({ onPress, pause }: Props) => {
   const [on, setOn] = useState(true);
 
   useEffect(() => {
-    if (refreshing) {
+    if (!pause) {
       setOn(false);
-    }
-  }, [refreshing]);
-
-  useEffect(() => {
-    if (!on) {
       setTimeout(() => {
         setOn(true);
       }, 0);
     }
-  }, [on]);
+  }, [pause]);
 
   return (
     <Style.Button
       activeOpacity={1}
       onPress={() => {
         onPress();
-        setOn(false);
       }}
     >
       <View style={{ position: "absolute" }}>
@@ -39,10 +33,10 @@ const ReloadButton = ({ onPress, refreshing }: Props) => {
       </View>
       {on && (
         <CountdownCircleTimer
-          isPlaying
+          isPlaying={!pause}
           duration={15}
           onComplete={() => {
-            // onPress();
+            onPress();
             return { shouldRepeat: true };
           }}
           isGrowing

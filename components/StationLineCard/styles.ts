@@ -22,14 +22,12 @@ export const NextStation = styled.Text`
 `;
 
 export const Direction = styled.Text`
-  margin-left: 4px;
   ${({ theme }) => theme.font.body_3}
   color: ${({ theme }) => theme.colors.secondary_white};
 `;
 
 export const TitleBox = styled.View`
-  flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   flex: 1;
 `;
 

@@ -1,116 +1,80 @@
 import React, { useEffect, useState } from "react";
-import { Animated, FlatList, RefreshControl, Text, View } from "react-native";
+import { FlatList, RefreshControl, View } from "react-native";
 import StationGroup from "../StationGroup/StationGroup";
 import { LineName } from "../_common/LineBadge/LineBadge";
-import useReloadButton from "../../hooks/useReloadButton";
 import ReloadButton from "../_common/ReloadButton/ReloadButton";
-import { StationInfo } from "../../repository/data/StationInfo";
-import { seoulApi } from "../../api";
-import { useQueries, useQueryClient } from "@tanstack/react-query";
-import { StationServiceImpl } from "../../service/StationServiceImpl";
-import { RealTimeArrival } from "../../repository/data/dummy";
+import { useQueryClient } from "@tanstack/react-query";
 import useAppLoading from "../../hooks/useAppLoading";
+import useGeoLocation from "../../hooks/useGeoLocation";
+import useStationList from "../../query/useStationList";
+
+export type StationList = { station: string; line: LineName }[];
 
 type Props = {
-  stationList: { station: string; line: LineName }[];
+  stationList: StationList;
   LineHeaderComponent?: JSX.Element;
   flatlistRef?: React.RefObject<FlatList<any>>;
-  refreshLocation?: () => void;
-  refresh?: boolean;
+  refresh: boolean;
+  onRefresh?: () => void;
   increaseDistance?: () => void;
+  queryKey: string;
 };
 
 const StationCardSection = ({
   stationList,
   LineHeaderComponent,
   flatlistRef,
-  refreshLocation,
   refresh,
+  onRefresh,
   increaseDistance,
+  queryKey,
 }: Props) => {
-  const [refreshing, setRefreshing] = useState(false);
-  const [loadMoreList, setLoadMoreList] = useState(false);
-  const [isActive, onScroll] = useReloadButton();
-  const { completePrepare } = useAppLoading();
-
+  console.log(stationList);
   const queryClient = useQueryClient();
-
-  const onRefresh = () => {
-    setRefreshing(true);
-    //gps로 역 찾는 함수
-    refreshLocation && refreshLocation();
-    queryClient.invalidateQueries({ queryKey: ["subway"] }).then(() => {
-      setRefreshing(false);
-    });
-    //api 데이터 불러오는 함수
-    // setTimeout(() => {
-    // }, 5000);
-  };
+  const [pause, setPause] = useState(false);
 
   const onRefreshByButton = () => {
-    queryClient.invalidateQueries({ queryKey: ["subway"] }).then(() => {});
+    setPause(true);
+    queryClient.invalidateQueries({ queryKey: ["subway", queryKey] });
   };
 
-  const getSubwayListByStation = async ({
-    station_nm,
-  }: Pick<StationInfo, "station_nm">) => {
-    const { data } = await seoulApi.get(
-      `/realtimeStationArrival/1/20/${station_nm}`
-    );
-    // console.log("hi-------------------------------", station_nm);
-
-    return (data.realtimeArrivalList as RealTimeArrival[]).map(
-      (realtimeArrival) => new StationServiceImpl(realtimeArrival)
-    );
-  };
-
-  const combinedStationListWithData = useQueries({
-    queries: stationList?.map(({ station }) => {
-      const queryKey = ["subway", station];
-      const queryFn = () => getSubwayListByStation({ station_nm: station });
-      const staleTime = Infinity;
-
-      return { queryKey, queryFn, staleTime };
-    }),
-    combine(result) {
-      return {
-        data: stationList.map((value, i) => ({
-          ...value,
-          subwayList: result[i].data,
-        })),
-        pending: result.some(({ isLoading }) => isLoading),
-      };
-    },
-  });
+  const combinedStationListWithData = useStationList(stationList);
 
   useEffect(() => {
-    if (
-      combinedStationListWithData.pending ||
-      combinedStationListWithData.data.length == 0
-    )
-      return;
+    if (pause && !combinedStationListWithData.pending) {
+      setTimeout(() => {
+        setPause(false);
+      }, 0);
+    }
+  }, [combinedStationListWithData.pending, pause]);
 
+  // 초기 로딩
+  const { completePrepare, loading } = useAppLoading();
+
+  const isPreload =
+    loading === false &&
+    (combinedStationListWithData.pending ||
+      combinedStationListWithData?.data?.length === 0);
+
+  useEffect(() => {
+    if (isPreload) return;
     completePrepare();
-  }, [combinedStationListWithData.pending]);
+  }, [combinedStationListWithData]);
 
-  if (
-    combinedStationListWithData.pending ||
-    combinedStationListWithData.data.length == 0
-  ) {
+  if (isPreload) {
     return null;
   }
+  // 초기 로딩
 
   return (
     <>
       <FlatList
-        // onScroll={(e) => onScroll(e.nativeEvent.contentOffset.y)}
-        // scrollEventThrottle={100}
         data={combinedStationListWithData.data}
         ListHeaderComponent={LineHeaderComponent}
         ListFooterComponent={<View style={{ height: 60, width: "100%" }} />}
         refreshControl={
           <RefreshControl //
-            refreshing={refreshing || combinedStationListWithData.pending}
+            refreshing={refresh || combinedStationListWithData.pending}
             onRefresh={onRefresh}
             colors={["#A8A8A8"]} // 안드로이드
             tintColor={"#A8A8A8"} // ios
@@ -126,7 +90,7 @@ const StationCardSection = ({
         ref={flatlistRef}
         // onStartReached={() => alert("h2")} // 시작에 도달하면 실행하는 함수 (무한스크롤?)
       />
-      <ReloadButton refreshing={refreshing} onPress={onRefreshByButton} />
+      <ReloadButton pause={pause || refresh} onPress={onRefreshByButton} />
     </>
   );
 };

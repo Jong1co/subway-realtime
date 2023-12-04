@@ -1,7 +1,9 @@
+import { LineName } from "../../components/_common/LineBadge/LineBadge";
+
 export type StationId = string;
 
 export type StationInfo = {
-  line_num: string;
+  line_num: LineName | string;
   station_nm_chn: string;
   station_cd: string;
   station_nm_jpn: string;

@@ -80,8 +80,6 @@ const StationLineCard = ({
     }
   };
 
-  // console.log(runningSubwayList);
-
   return (
     <Style.Card key={destination}>
       <Style.TitleSection color={lineColorInfo[line].color}>

@@ -6,7 +6,11 @@ import { RootStackParamList } from "../router/Router";
 import StationCardSection from "../components/StationCardSection/StationCardSection";
 import BookmarkSection from "../components/BookmarkSection/BookmarkSection";
 import Seperator from "../components/_common/Seperator";
-import useFindAroundStation from "../hooks/useFindAroundStation";
+import useAroundStationList from "../hooks/useAroundStationList";
+
+import useGeoLocation from "../hooks/useGeoLocation";
+import useHomeHeader from "../hooks/useHomeHeader";
+import { useState } from "react";
 
 export type RunningSubwayInfo = {
   currentPosition: string;
@@ -16,8 +20,16 @@ export type RunningSubwayInfo = {
 export default function HomeScreen({
   navigation,
 }: NativeStackScreenProps<RootStackParamList, "Home">) {
-  const { increaseDistance, stationList, refreshLocation, refresh } =
-    useFindAroundStation();
+  const [distance, setDistance] = useState<number>(500);
+  const increaseDistance = () => {
+    if (distance >= 2000) return;
+
+    setDistance((prev) => prev * 2);
+  };
+
+  const { stationList } = useAroundStationList(2000);
+  const { location, invalidateLocation } = useGeoLocation();
+  const header = useHomeHeader();
 
   return (
     <View
@@ -28,9 +40,10 @@ export default function HomeScreen({
       }}
     >
       <StationCardSection
+        queryKey={"home"}
         stationList={stationList}
-        refresh={refresh}
-        refreshLocation={refreshLocation}
+        refresh={location.stale}
+        onRefresh={invalidateLocation}
         increaseDistance={increaseDistance}
         LineHeaderComponent={
           <>
