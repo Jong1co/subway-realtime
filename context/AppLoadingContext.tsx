@@ -1,10 +1,9 @@
 import { useFonts } from "expo-font";
 import React, { PropsWithChildren, useEffect } from "react";
 import useAppLoading from "../hooks/useAppLoading";
-import * as SplashScreen from "expo-splash-screen";
-import { View } from "react-native";
+import SplashScreen from "react-native-splash-screen";
 
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 
 const AppLoadingContext = ({ children }: PropsWithChildren) => {
   // const [loaded] = useFonts({
@@ -14,7 +13,9 @@ const AppLoadingContext = ({ children }: PropsWithChildren) => {
   const { loading } = useAppLoading();
 
   useEffect(() => {
-    !loading && SplashScreen.hideAsync();
+    if (loading === false) {
+      SplashScreen.hide();
+    }
   }, [loading]);
 
   // if (loading) {

@@ -32,6 +32,7 @@ const SearchScreen = ({
   return (
     <View style={{ flex: 1, backgroundColor: "white", paddingTop: 16 }}>
       <FlatList
+        showsVerticalScrollIndicator={false}
         style={{ marginHorizontal: 16, flex: 1 }}
         data={filterStationBySearchText(searchText)}
         renderItem={({ item }) => (
