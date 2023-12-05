@@ -9,7 +9,6 @@ export const getSubwayListByStation = async ({
   const { data } = await seoulApi.get(
     `/realtimeStationArrival/1/20/${station_nm}`
   );
-  console.log(data);
 
   return (data.realtimeArrivalList as RealTimeArrival[]).map(
     (realtimeArrival) => new StationServiceImpl(realtimeArrival)

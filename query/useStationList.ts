@@ -20,6 +20,7 @@ const useStationList = (stationList: StationList) => {
           subwayList: result[i]?.data || [],
         })),
         pending: result.some(({ isLoading, isFetching }) => isLoading),
+        success: result.every(({ isSuccess }) => isSuccess),
       };
     },
   });

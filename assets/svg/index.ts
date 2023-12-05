@@ -4,3 +4,4 @@ export { default as DoubleArrow } from "./double_arrow.svg";
 export { default as Reload } from "./reload.svg";
 export { default as Search } from "./search.svg";
 export { default as Back } from "./back.svg";
+export { default as Subway } from "./subway.svg";

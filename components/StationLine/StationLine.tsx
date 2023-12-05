@@ -1,12 +1,15 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { colors } from "../../styles/colors";
+import { SvgIcon } from "../_common/SvgIcon/SvgIcon";
+import * as Style from "./styles";
 
 type Props = {
   list: string[];
   currentStation: string;
   runningSubwayList: { currentStation: string; lastStation: string }[];
   color: string;
+  isUphill: boolean;
 };
 
 const StationLine = ({
@@ -14,6 +17,7 @@ const StationLine = ({
   currentStation,
   runningSubwayList,
   color,
+  isUphill,
 }: Props) => {
   return (
     <View
@@ -27,7 +31,7 @@ const StationLine = ({
     >
       <View
         style={{
-          top: 54,
+          top: 56,
           height: 12,
           width: "80%",
           left: "10%",
@@ -37,6 +41,11 @@ const StationLine = ({
       />
       {list.map((item) => {
         const isCurrentStation = currentStation === item;
+        const hasSubway = runningSubwayList.find(
+          ({ currentStation: runningSubwayStation, lastStation }) =>
+            runningSubwayStation === item
+        );
+
         // const hasSubway = runningSubwayList.find(
         //   (subway) =>
         //     subway.arvlMsg3.includes(item) &&
@@ -52,32 +61,29 @@ const StationLine = ({
               alignItems: "center",
               width: 80,
               position: "relative",
+              marginTop: 30,
               // height: 70,
               // width: `${100 / findLine().length}%`,
             }}
           >
-            {runningSubwayList.find(
-              ({ currentStation: runningSubwayStation }) =>
-                runningSubwayStation === item
-            ) ? (
-              <View
-                style={{
-                  width: 24,
-                  height: 24,
-                  backgroundColor: "gray",
-                  marginTop: 20,
-                }}
-              />
+            {hasSubway ? (
+              <View style={{ alignItems: "center" }}>
+                <Style.SubwayDestination>
+                  {hasSubway.lastStation}
+                </Style.SubwayDestination>
+                <Style.Subway isUphill={isUphill}>
+                  <SvgIcon
+                    name="Subway"
+                    width={16}
+                    height={16}
+                    fill={"white"}
+                  />
+                </Style.Subway>
+              </View>
             ) : (
-              <View
-                style={{
-                  width: 24,
-                  height: 24,
-                  backgroundColor: "gray",
-                  opacity: 0,
-                  marginTop: 20,
-                }}
-              />
+              <View style={{ opacity: 0 }}>
+                <SvgIcon name="Subway" width={16} height={16} fill={"white"} />
+              </View>
             )}
             <View
               style={{

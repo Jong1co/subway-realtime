@@ -7,6 +7,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import useAppLoading from "../../hooks/useAppLoading";
 import useGeoLocation from "../../hooks/useGeoLocation";
 import useStationList from "../../query/useStationList";
+import StationEmptyComponent from "./StationEmptyComponent";
 
 export type StationList = { station: string; line: LineName }[];
 
@@ -29,7 +30,6 @@ const StationCardSection = ({
   increaseDistance,
   queryKey,
 }: Props) => {
-  console.log(stationList);
   const queryClient = useQueryClient();
   const [pause, setPause] = useState(false);
 
@@ -69,9 +69,12 @@ const StationCardSection = ({
   return (
     <>
       <FlatList
+        // data={[]}
         data={combinedStationListWithData.data}
         ListHeaderComponent={LineHeaderComponent}
         ListFooterComponent={<View style={{ height: 60, width: "100%" }} />}
+        ListEmptyComponent={StationEmptyComponent}
+        // contentContainerStyle={{ flex: 1, justifyContent: "center" }}
         refreshControl={
           <RefreshControl //
             refreshing={refresh || combinedStationListWithData.pending}

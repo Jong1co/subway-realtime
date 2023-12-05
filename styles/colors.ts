@@ -23,5 +23,6 @@ export const colors = {
   secondary_300: "#EDECEC",
   secondary_400: "#9C9C9C",
   secondary_600: "#5C5C5C",
-  secondary_black: "#201D1C",
+  secondary_black: "#19181B",
+  primary_100: "#8E2DEF",
 };
