@@ -5182,7 +5182,7 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_cd: "4703",
     station_nm_jpn: "サ.イルグミンジュミョジ",
     station_nm_eng: "April 19th National Cemetery",
-    station_nm: "4·19민주묘지",
+    station_nm: "4.19 민주묘지",
     coordinate: {
       lat: 0,
       lng: 0,

@@ -369,7 +369,7 @@ const lineData: { station: string; lines: LineName[] }[] = [
   { lines: ["9호선"], station: "중앙보훈병원" },
   { lines: ["우이신설선"], station: "북한산우이" },
   { lines: ["우이신설선"], station: "솔밭공원" },
-  { lines: ["우이신설선"], station: "4·19민주묘지" },
+  { lines: ["우이신설선"], station: "4.19 민주묘지" },
   { lines: ["우이신설선"], station: "가오리" },
   { lines: ["우이신설선"], station: "화계" },
   { lines: ["우이신설선"], station: "삼양" },

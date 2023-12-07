@@ -4,6 +4,9 @@ import { colors } from "../../styles/colors";
 import { SvgIcon } from "../_common/SvgIcon/SvgIcon";
 import * as Style from "./styles";
 import addDirectionText from "../../utils/addDirectionText";
+import { useQuery } from "@tanstack/react-query";
+import { getSubwayListByStation } from "../../api/station";
+import convertLongStationName from "../../utils/convertLongStationName";
 
 type Props = {
   list: string[];
@@ -11,6 +14,7 @@ type Props = {
   runningSubwayList: { currentStation: string; lastStation: string }[];
   color: string;
   isUphill: boolean;
+  comparisonStation: string;
 };
 
 const StationLine = ({
@@ -19,7 +23,28 @@ const StationLine = ({
   runningSubwayList,
   color,
   isUphill,
+  comparisonStation,
 }: Props) => {
+  const { data } = useQuery({
+    queryKey: ["subway", currentStation],
+    queryFn: () => getSubwayListByStation({ station_nm: comparisonStation }),
+    enabled: comparisonStation !== currentStation,
+    initialData: [],
+  });
+
+  const runningList = data?.reduce((accr, curr) => {
+    if (curr.isUphill === isUphill) {
+      accr.push({
+        currentStation: curr.currentStation,
+        lastStation: curr.lastStation,
+      });
+    }
+    return accr;
+  }, [] as { currentStation: string; lastStation: string }[]);
+
+  const resultList =
+    comparisonStation === currentStation ? runningSubwayList : runningList;
+
   return (
     <View
       style={{
@@ -27,12 +52,12 @@ const StationLine = ({
         flexDirection: "row",
         justifyContent: "space-between",
         position: "relative",
-        marginTop: 12,
+        marginTop: 26,
       }}
     >
       <View
         style={{
-          top: 56,
+          top: 46,
           height: 12,
           width: "80%",
           left: "10%",
@@ -42,7 +67,7 @@ const StationLine = ({
       />
       {list.map((item) => {
         const isCurrentStation = currentStation === item;
-        const hasSubway = runningSubwayList.find(
+        const hasSubway = resultList.find(
           ({ currentStation: runningSubwayStation, lastStation }) =>
             runningSubwayStation === item
         );
@@ -95,20 +120,17 @@ const StationLine = ({
                 // flex: 1,
                 justifyContent: "center",
                 alignItems: "center",
-                marginTop: 10,
               }}
             >
-              {
-                <View
-                  style={{
-                    width: 7,
-                    height: 7,
-                    borderRadius: 7,
-                    backgroundColor: "white",
-                    opacity: isCurrentStation ? 1 : 0.7,
-                  }}
-                />
-              }
+              <View
+                style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: 7,
+                  backgroundColor: "white",
+                  opacity: isCurrentStation ? 1 : 0.7,
+                }}
+              />
             </View>
             <Text
               style={{
@@ -119,7 +141,7 @@ const StationLine = ({
                 color: isCurrentStation ? "black" : "gray",
               }}
             >
-              {item}
+              {convertLongStationName(item)}
             </Text>
           </View>
         );

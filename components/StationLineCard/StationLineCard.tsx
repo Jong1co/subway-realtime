@@ -102,6 +102,7 @@ const StationLineCard = ({
               key={nextStation + i}
               list={isUphill ? [...list].reverse() : list}
               isUphill={isUphill}
+              comparisonStation={isUphill ? list[0] : list[0]}
               currentStation={currentStation}
               runningSubwayList={runningSubwayList}
             />

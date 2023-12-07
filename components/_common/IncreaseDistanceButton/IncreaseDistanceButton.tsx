@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import * as Style from "./styles";
 import { SvgIcon } from "../SvgIcon/SvgIcon";
 
@@ -23,7 +23,9 @@ const IncreaseDistanceButton = ({
       }}
     >
       {isLoading ? (
-        <ActivityIndicator size={16} color={"white"} animating />
+        <View style={{ width: 16, height: 16, overflow: "hidden" }}>
+          <ActivityIndicator size={16} color={"white"} animating />
+        </View>
       ) : (
         <SvgIcon name="Search" fill={"white"} width={16} height={16} />
       )}

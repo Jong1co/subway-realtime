@@ -28,11 +28,15 @@ export class StationServiceImpl implements StationService {
   }
 
   private getLastStation() {
-    return this.realTimeArrival.bstatnNm;
+    return this.realTimeArrival.bstatnNm.replaceAll(/\([^)]*\)/g, "");
   }
 
   get line() {
     return getLineName(this.realTimeArrival.subwayId);
+  }
+
+  get isExpress() {
+    return this.realTimeArrival.arvlCd === "0";
   }
 
   get nextStation() {
@@ -59,6 +63,13 @@ export class StationServiceImpl implements StationService {
 
   get lastStation() {
     return this.getLastStation();
+  }
+
+  get isUphill() {
+    return (
+      this.realTimeArrival.updnLine === "상행" ||
+      this.realTimeArrival.updnLine === "외선"
+    );
   }
 }
 

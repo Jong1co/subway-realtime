@@ -985,13 +985,13 @@ export const routeStore: Record<
   "1092": {
     lineList: [
       {
-        list: [...신설동_북한산우이].reverse(),
-        destination: "북한산우이",
+        list: 신설동_북한산우이,
+        destination: 신설동_북한산우이[0],
         direction: "상행",
       },
       {
-        list: 신설동_북한산우이,
-        destination: 신설동_북한산우이[0],
+        list: [...신설동_북한산우이].reverse(),
+        destination: [...신설동_북한산우이].reverse()[0],
         direction: "하행",
       },
     ],
