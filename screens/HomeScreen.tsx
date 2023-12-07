@@ -14,8 +14,6 @@ import { useRef, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import BottomSheet from "../components/_common/BottomSheet/BottomSheet";
 import IncreaseDistanceButton from "../components/_common/IncreaseDistanceButton/IncreaseDistanceButton";
-import { InfoRepository } from "../api/info";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import useStationList from "../query/useStationList";
 
 export type RunningSubwayInfo = {
