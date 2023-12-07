@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import * as Style from "./styles";
 import BookmarkCard from "../BookmarkCard/BookmarkCard";
 import { FlatList, View } from "react-native";
 import { LineName } from "../_common/LineBadge/LineBadge";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { Bookmark, StorageBookmarkRepository } from "../../api/bookmark";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { hashKey } from "../../utils/hashKey";
 import BookmarkEmpty from "../BookmarkCard/BookmarkEmpty";
+import { getSubwayListByStation } from "../../api/station";
+import addDirectionText from "../../utils/addDirectionText";
+import useAppLoading from "../../hooks/useAppLoading";
 
 export type BookmarkInfo = {
   arrivalStation: string; // 데이터 받아와서 넣어줄것임
@@ -23,6 +26,7 @@ const BookmarkSection = () => {
   // useEffect(() => {
   //   bookmarkRepository.removeAll();
   // }, []);
+  console.log("hi");
 
   const { data: bookmarks } = useQuery<Bookmark[]>({
     queryKey: ["bookmarks"],
@@ -30,11 +34,47 @@ const BookmarkSection = () => {
     initialData: [],
   });
 
-  const bookmarkList: BookmarkInfo[] = bookmarks.map((bookmark) => ({
-    ...bookmark,
-    arrivalStation: "장암",
-    arrivalTime: "5분 뒤 도착",
-  }));
+  const bookmarkList = useQueries({
+    queries: bookmarks.map((bookmark) => ({
+      queryKey: ["bookmark", bookmark],
+      queryFn: () => getSubwayListByStation({ station_nm: bookmark.station }),
+    })),
+    combine(result) {
+      return {
+        data: bookmarks.map((bookmark, i) => {
+          //순서를 나타내는 orderKey 판별하는 로직 필요함
+          const findItem = (result[i]?.data || [])?.find(
+            (subway) =>
+              subway.nextStation === bookmark.nextStation &&
+              subway.line === bookmark.line &&
+              subway.isFirst
+          );
+
+          return {
+            ...bookmark,
+            arrivalStation: addDirectionText(findItem?.lastStation),
+            arrivalTime: findItem?.arrivalState ?? "",
+          };
+        }),
+        pending: result.some((item) => item.isLoading), // false
+        initialPending: result.some((item) => item.isFetched), // true
+      };
+    },
+  });
+
+  const { loading, completeBookmarkLoading } = useAppLoading();
+
+  const isPreload = !bookmarkList.pending && bookmarkList.initialPending;
+
+  useEffect(() => {
+    if (isPreload) {
+      completeBookmarkLoading();
+    }
+  }, [isPreload]);
+
+  useEffect(() => {
+    return () => console.log("unmount");
+  }, []);
 
   return (
     <Style.Section>
@@ -42,13 +82,13 @@ const BookmarkSection = () => {
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={bookmarkList}
+        data={bookmarkList.data}
         contentContainerStyle={{ paddingHorizontal: 16 }}
         ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
         renderItem={({ item }) => <BookmarkCard {...item} />}
         keyExtractor={(item) => hashKey(item)}
         ListEmptyComponent={BookmarkEmpty}
-        scrollEnabled={bookmarkList.length > 0}
+        scrollEnabled={bookmarkList.data.length > 0}
       />
     </Style.Section>
   );

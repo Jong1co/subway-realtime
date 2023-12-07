@@ -5,6 +5,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../router/Router";
 import { StatusBar } from "expo-status-bar";
 import { useQueryClient } from "@tanstack/react-query";
+import LineTOC from "../components/_common/LineTOC/LineTOC";
 
 const DetailScreen = ({
   navigation,
@@ -26,13 +27,23 @@ const DetailScreen = ({
 
   return (
     <View style={{ backgroundColor: "white", flex: 1 }}>
-      <View style={{ flexDirection: "row" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          paddingLeft: 16,
+          paddingVertical: 12,
+          borderBottomWidth: 1,
+          borderBottomColor: "#e9ecef",
+        }}
+      >
         {lines.map((line) => (
-          <Button //
-            key={line}
-            title={line}
-            onPress={() => moveToLine(line)}
-          />
+          <View style={{ marginRight: 8 }} key={line}>
+            <LineTOC
+              line={line}
+              isActive={true}
+              onPress={() => moveToLine(line)}
+            />
+          </View>
         ))}
       </View>
       <StationCardSection
@@ -41,9 +52,11 @@ const DetailScreen = ({
         onRefresh={() => {
           setRefresh(true);
           queryClient.invalidateQueries({ queryKey: ["subway", station] });
+          queryClient.invalidateQueries({ queryKey: ["bookmark"] });
+
           setTimeout(() => {
             setRefresh(false);
-          }, 1000);
+          }, 500);
         }}
         stationList={stationList}
         flatlistRef={flatlistRef}

@@ -4,39 +4,39 @@ import * as Style from "./styles";
 export const lineInfo = {
   "1호선": {
     color: "1_line",
-    text: "1",
+    text: "1호선",
   },
   "2호선": {
     color: "2_line",
-    text: "2",
+    text: "2호선",
   },
   "3호선": {
     color: "3_line",
-    text: "3",
+    text: "3호선",
   },
   "4호선": {
     color: "4_line",
-    text: "4",
+    text: "4호선",
   },
   "5호선": {
     color: "5_line",
-    text: "5",
+    text: "5호선",
   },
   "6호선": {
     color: "6_line",
-    text: "6",
+    text: "6호선",
   },
   "7호선": {
     color: "7_line",
-    text: "7",
+    text: "7호선",
   },
   "8호선": {
     color: "8_line",
-    text: "8",
+    text: "8호선",
   },
   "9호선": {
     color: "9_line",
-    text: "9",
+    text: "9호선",
   },
   경의중앙선: {
     color: "gyeongui_line",
@@ -44,7 +44,7 @@ export const lineInfo = {
   },
   공항철도: {
     color: "airport_line",
-    text: "공항",
+    text: "공항철도",
   },
 
   경춘선: {
@@ -55,7 +55,6 @@ export const lineInfo = {
     color: "gyeonggang_line",
     text: "경강",
   },
-
   수인분당선: {
     color: "suin_line",
     text: "수인분당",
@@ -78,16 +77,22 @@ export type LineName = keyof typeof lineInfo;
 
 type Props = {
   line: LineName;
-  size?: "md" | "sm";
+  isActive: boolean;
+  onPress?: () => void;
 };
 
-const LineBadge = ({ line, size = "md" }: Props) => {
+const LineTOC = ({ line, isActive, onPress }: Props) => {
   const { color, text } = lineInfo[line] || { color: "", text: "" };
   return (
-    <Style.Badge color={color} size={size} isCircle={text.length === 1}>
-      <Style.BadgeText size={size}>{text}</Style.BadgeText>
+    <Style.Badge
+      activeOpacity={0.95}
+      color={color}
+      isActive={isActive}
+      onPress={onPress}
+    >
+      <Style.BadgeText isActive={isActive}>{text}</Style.BadgeText>
     </Style.Badge>
   );
 };
 
-export default LineBadge;
+export default LineTOC;

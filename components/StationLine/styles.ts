@@ -9,6 +9,7 @@ export const SubwayDestination = styled.Text`
   overflow: hidden;
   position: absolute;
   bottom: 16px;
+  text-align: center;
 `;
 
 export const Subway = styled.View<{ isUphill: boolean }>`

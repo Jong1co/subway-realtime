@@ -1,4 +1,10 @@
-import { useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import useGeoLocation from "./useGeoLocation";
 import { findStationByDistance } from "../utils/findStationByDistance";
 import { isAvailableLine } from "../repository/data/isAvailableLine";
@@ -7,31 +13,46 @@ import { StationLineInfo } from "./useFindAroundStation";
 import { LineName } from "../components/_common/LineBadge/LineBadge";
 import { useQueryClient } from "@tanstack/react-query";
 
-const useAroundStationList = (distance: number = 500) => {
+const useAroundStationList = (
+  distance: number = 500,
+  setDistance: Dispatch<SetStateAction<number>>
+) => {
+  const [isLoading, setLoading] = useState(false);
   const queryClient = useQueryClient();
 
   const { location } = useGeoLocation();
   const [stationList, setStationList] = useState<StationLineInfo[]>([]);
 
-  const filterStationList = (lineList: StationInfo[]) => {
+  const filterStationList = useCallback((lineList: StationInfo[]) => {
     return lineList.reduce((accr, curr) => {
-      isAvailableLine(curr.line_num) &&
+      isAvailableLine(curr.line_num as LineName) &&
         accr.push({
           station: curr.station_nm,
           line: curr.line_num as LineName,
         });
       return accr;
     }, [] as StationLineInfo[]);
-  };
+  }, []);
 
   useEffect(() => {
     if (location.loaded) {
-      const lineList = findStationByDistance(location.coordinates, distance);
-      const filteredStationList = filterStationList(lineList);
+      let newDistance = distance;
+      let lineList = findStationByDistance(location.coordinates, newDistance);
+      let filteredStationList = filterStationList(lineList);
 
+      while (filteredStationList.length === 0 && newDistance < 2000) {
+        lineList = findStationByDistance(location.coordinates, newDistance);
+        filteredStationList = filterStationList(lineList);
+        if (filteredStationList.length === 0) {
+          newDistance *= 2;
+        }
+      }
+
+      setDistance(newDistance);
+      console.log(newDistance);
       setStationList(filteredStationList);
     }
-  }, [location.coordinates]);
+  }, [location.coordinates, distance]);
 
   useEffect(() => {
     const cachedSubwayResponse = queryClient.getQueriesData({
@@ -42,10 +63,11 @@ const useAroundStationList = (distance: number = 500) => {
       // 캐시된 것이 없을 때, 즉 첫 로딩 시
     } else {
       queryClient.invalidateQueries({ queryKey: ["subway", "home"] });
+      setLoading(false);
     }
   }, [stationList]);
 
-  return { stationList };
+  return { stationList, isLoading, setLoading };
 };
 
 export default useAroundStationList;

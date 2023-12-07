@@ -15,7 +15,7 @@ export const ButtonText = styled.Text`
 export const SearchButton = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.colors.primary_100};
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 6px;
   /* padding: 4px 12px 4px 8px;
   border-radius: 12px; */
   align-items: center;

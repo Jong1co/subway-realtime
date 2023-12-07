@@ -2,13 +2,13 @@ import { useQueries } from "@tanstack/react-query";
 import { getSubwayListByStation } from "../api/station";
 import { StationList } from "../components/StationCardSection/StationCardSection";
 
-const useStationList = (stationList: StationList) => {
+const useStationList = (stationList: StationList, key: string) => {
   return useQueries({
     queries: [
       ...stationList?.map(({ station }) => {
-        const queryKey = ["subway", station];
+        const queryKey = ["subway", key, station];
         const queryFn = () => getSubwayListByStation({ station_nm: station });
-        const staleTime = Infinity;
+        const staleTime = 20 * 1000;
 
         return { queryKey, queryFn, staleTime };
       }),
@@ -21,6 +21,7 @@ const useStationList = (stationList: StationList) => {
         })),
         pending: result.some(({ isLoading, isFetching }) => isLoading),
         success: result.every(({ isSuccess }) => isSuccess),
+        isFetching: result.every(({ isFetching }) => isFetching),
       };
     },
   });

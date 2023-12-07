@@ -3,7 +3,7 @@ import React, { PropsWithChildren, useEffect } from "react";
 import useAppLoading from "../hooks/useAppLoading";
 import SplashScreen from "react-native-splash-screen";
 
-// SplashScreen.preventAutoHideAsync();
+// SplashScreen.show();
 
 const AppLoadingContext = ({ children }: PropsWithChildren) => {
   // const [loaded] = useFonts({
@@ -12,15 +12,16 @@ const AppLoadingContext = ({ children }: PropsWithChildren) => {
 
   const { loading } = useAppLoading();
 
+  // useEffect(() => {
+  //   SplashScreen.show();
+  // }, []);
+
   useEffect(() => {
-    if (loading === false) {
+    if (loading.bookmark === false && loading.home === false) {
+      console.log(loading);
       SplashScreen.hide();
     }
   }, [loading]);
-
-  // if (loading) {
-  //   return null;
-  // }
 
   return <>{children}</>;
 };

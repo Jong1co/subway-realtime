@@ -5,6 +5,7 @@ export interface StationService {
   arrivalTime: number;
   currentStation: string;
   lastStation: string;
+  arrivalState: string;
   // bookmark: boolean;
   // currentSubwayPositions: string[];
 }

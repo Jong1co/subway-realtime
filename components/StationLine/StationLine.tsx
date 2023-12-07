@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 import { colors } from "../../styles/colors";
 import { SvgIcon } from "../_common/SvgIcon/SvgIcon";
 import * as Style from "./styles";
+import addDirectionText from "../../utils/addDirectionText";
 
 type Props = {
   list: string[];
@@ -69,7 +70,7 @@ const StationLine = ({
             {hasSubway ? (
               <View style={{ alignItems: "center" }}>
                 <Style.SubwayDestination>
-                  {hasSubway.lastStation}
+                  {addDirectionText(hasSubway.lastStation)}
                 </Style.SubwayDestination>
                 <Style.Subway isUphill={isUphill}>
                   <SvgIcon

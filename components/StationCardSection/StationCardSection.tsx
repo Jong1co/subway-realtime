@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, RefreshControl, View } from "react-native";
+import {
+  FlatList,
+  RefreshControl,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  VirtualizedList,
+} from "react-native";
 import StationGroup from "../StationGroup/StationGroup";
 import { LineName } from "../_common/LineBadge/LineBadge";
 import ReloadButton from "../_common/ReloadButton/ReloadButton";
@@ -14,20 +21,23 @@ export type StationList = { station: string; line: LineName }[];
 type Props = {
   stationList: StationList;
   LineHeaderComponent?: JSX.Element;
+  LineFooterComponent?: JSX.Element;
   flatlistRef?: React.RefObject<FlatList<any>>;
   refresh: boolean;
   onRefresh?: () => void;
   increaseDistance?: () => void;
   queryKey: string;
+  // distance: number;
 };
 
 const StationCardSection = ({
+  // distance,
   stationList,
   LineHeaderComponent,
   flatlistRef,
   refresh,
   onRefresh,
-  increaseDistance,
+  LineFooterComponent,
   queryKey,
 }: Props) => {
   const queryClient = useQueryClient();
@@ -36,48 +46,47 @@ const StationCardSection = ({
   const onRefreshByButton = () => {
     setPause(true);
     queryClient.invalidateQueries({ queryKey: ["subway", queryKey] });
+    queryClient.invalidateQueries({ queryKey: ["bookmark"] });
   };
 
-  const combinedStationListWithData = useStationList(stationList);
+  const { pending, success, data, isFetching } = useStationList(
+    stationList,
+    queryKey
+  );
 
   useEffect(() => {
-    if (pause && !combinedStationListWithData.pending) {
+    if (pause && !pending) {
       setTimeout(() => {
         setPause(false);
       }, 0);
     }
-  }, [combinedStationListWithData.pending, pause]);
+  }, [pending, pause]);
 
   // 초기 로딩
-  const { completePrepare, loading } = useAppLoading();
+  const { completeHomeLoading, loading } = useAppLoading();
 
-  const isPreload =
-    loading === false &&
-    (combinedStationListWithData.pending ||
-      combinedStationListWithData?.data?.length === 0);
+  const isPreload = loading.home && pending;
 
   useEffect(() => {
     if (isPreload) return;
-    completePrepare();
-  }, [combinedStationListWithData]);
+    completeHomeLoading();
+  }, [data, pending]);
 
   if (isPreload) {
     return null;
   }
-  // 초기 로딩
 
   return (
     <>
       <FlatList
-        // data={[]}
-        data={combinedStationListWithData.data}
+        data={data}
+        // data={data}
         ListHeaderComponent={LineHeaderComponent}
-        ListFooterComponent={<View style={{ height: 60, width: "100%" }} />}
+        ListFooterComponent={LineFooterComponent}
         ListEmptyComponent={StationEmptyComponent}
-        // contentContainerStyle={{ flex: 1, justifyContent: "center" }}
         refreshControl={
           <RefreshControl //
-            refreshing={refresh || combinedStationListWithData.pending}
+            refreshing={refresh && isFetching}
             onRefresh={onRefresh}
             colors={["#A8A8A8"]} // 안드로이드
             tintColor={"#A8A8A8"} // ios
@@ -87,15 +96,15 @@ const StationCardSection = ({
           <View style={{ height: 16, width: "100%" }} />
         )}
         renderItem={({ item }) => <StationGroup {...item} />}
-        keyExtractor={(item) => item.station + item.line}
-        onEndReached={increaseDistance} // 끝에 도달하면 실행하는 함수 (무한스크롤?)
-        onEndReachedThreshold={0.1} // 끝에서 10%정도 도달하면 실행하는 함수 (무한스크롤?)
+        keyExtractor={(item, index) => {
+          return item.station + item.line + Math.random();
+          // return item.station + item.line;
+        }}
         ref={flatlistRef}
-        // onStartReached={() => alert("h2")} // 시작에 도달하면 실행하는 함수 (무한스크롤?)
       />
       <ReloadButton pause={pause || refresh} onPress={onRefreshByButton} />
     </>
   );
 };
 
-export default StationCardSection;
+export default React.memo(StationCardSection);

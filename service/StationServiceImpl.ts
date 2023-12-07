@@ -45,6 +45,14 @@ export class StationServiceImpl implements StationService {
     return this.getArrivalTime();
   }
 
+  get arrivalState() {
+    return this.realTimeArrival.arvlMsg2;
+  }
+
+  get isFirst() {
+    return this.realTimeArrival.ordkey[1] === "1";
+  }
+
   get currentStation() {
     return this.getCurrentStation();
   }

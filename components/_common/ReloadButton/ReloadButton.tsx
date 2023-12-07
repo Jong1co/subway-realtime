@@ -36,7 +36,7 @@ const ReloadButton = ({ onPress, pause }: Props) => {
           isPlaying={!pause}
           duration={15}
           onComplete={() => {
-            onPress();
+            // onPress();
             return { shouldRepeat: true };
           }}
           isGrowing

@@ -6,25 +6,26 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RecoilRoot } from "recoil";
 import { StatusBar } from "expo-status-bar";
 import AppLoadingContext from "./context/AppLoadingContext";
-
-// import AppLoadingContext from "./context/AppLoadingContext";
+import { StrictMode } from "react";
 
 export default function App() {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <RecoilRoot>
-        <ThemeProvider theme={theme}>
-          <SafeAreaProvider>
-            <AppLoadingContext>
-              <Router />
-              <StatusBar style="auto" />
-            </AppLoadingContext>
-          </SafeAreaProvider>
-        </ThemeProvider>
-      </RecoilRoot>
-    </QueryClientProvider>
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <ThemeProvider theme={theme}>
+            <SafeAreaProvider>
+              <AppLoadingContext>
+                <Router />
+                <StatusBar style="auto" />
+              </AppLoadingContext>
+            </SafeAreaProvider>
+          </ThemeProvider>
+        </RecoilRoot>
+      </QueryClientProvider>
+    </StrictMode>
   );
 }
 /**

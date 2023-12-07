@@ -48,6 +48,7 @@ export class StorageBookmarkRepository implements BookmarkRepository {
   removeBookmark = async (bookmark: Bookmark) => {
     try {
       const data = await this.asyncStorage.getItem("bookmarks");
+      console.log(data);
       const bookmarks = data ? JSON.parse(data) : [];
 
       const removedBookmarks = bookmarks.filter((b: Bookmark) => {
