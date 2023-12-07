@@ -14,10 +14,16 @@ const useHomeHeader = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    Location.reverseGeocodeAsync({
-      latitude: location.coordinates.lat,
-      longitude: location.coordinates.lng,
-    }).then((a) => {
+    Location.reverseGeocodeAsync(
+      {
+        latitude: location.coordinates.lat,
+        longitude: location.coordinates.lng,
+      },
+      {
+        useGoogleMaps: false,
+      }
+    ).then((a) => {
+      console.log(a);
       const { district, name, city } = a[0];
       navigation.setOptions({
         header: () => {

@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const Section = styled.View`
   padding: 12px 0;
-  flex: 1;
+  /* flex: 1; */
 `;
 
 export const Title = styled.Text`

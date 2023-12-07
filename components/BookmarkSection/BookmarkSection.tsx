@@ -11,6 +11,9 @@ import BookmarkEmpty from "../BookmarkCard/BookmarkEmpty";
 import { getSubwayListByStation } from "../../api/station";
 import addDirectionText from "../../utils/addDirectionText";
 import useAppLoading from "../../hooks/useAppLoading";
+import { useRecoilState } from "recoil";
+import { distanceState } from "../../atom/distanceState";
+import { locationState } from "../../atom/locationState";
 
 export type BookmarkInfo = {
   arrivalStation: string; // 데이터 받아와서 넣어줄것임
@@ -23,10 +26,13 @@ export type BookmarkInfo = {
 const bookmarkRepository = new StorageBookmarkRepository(AsyncStorage);
 
 const BookmarkSection = () => {
-  // useEffect(() => {
-  //   bookmarkRepository.removeAll();
-  // }, []);
-  console.log("hi");
+  // // useEffect(() => {
+  // //   bookmarkRepository.removeAll();
+  // // }, []);
+  // const [distance, setDistance] = useRecoilState(distanceState);
+  // const [location, setLocation] = useRecoilState(locationState);
+
+  // console.log(distance);
 
   const { data: bookmarks } = useQuery<Bookmark[]>({
     queryKey: ["bookmarks"],
@@ -72,10 +78,6 @@ const BookmarkSection = () => {
     }
   }, [isPreload]);
 
-  useEffect(() => {
-    return () => console.log("unmount");
-  }, []);
-
   return (
     <Style.Section>
       <Style.Title>즐겨찾기</Style.Title>
@@ -94,4 +96,4 @@ const BookmarkSection = () => {
   );
 };
 
-export default BookmarkSection;
+export default React.memo(BookmarkSection);

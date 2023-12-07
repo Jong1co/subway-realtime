@@ -25,6 +25,7 @@ export class StorageBookmarkRepository implements BookmarkRepository {
   getBookmarks = async () => {
     try {
       const data = await this.asyncStorage.getItem("bookmarks");
+      console.log(data);
       return data ? JSON.parse(data) : [];
     } catch (e) {
       console.error(e);

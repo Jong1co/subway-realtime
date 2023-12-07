@@ -15,6 +15,8 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import BottomSheet from "../components/_common/BottomSheet/BottomSheet";
 import IncreaseDistanceButton from "../components/_common/IncreaseDistanceButton/IncreaseDistanceButton";
 import useStationList from "../query/useStationList";
+import { useRecoilState } from "recoil";
+import { distanceState } from "../atom/distanceState";
 
 export type RunningSubwayInfo = {
   currentPosition: string;
@@ -24,7 +26,7 @@ export type RunningSubwayInfo = {
 export default function HomeScreen({
   navigation,
 }: NativeStackScreenProps<RootStackParamList, "Home">) {
-  const [distance, setDistance] = useState<number>(500);
+  const [distance, setDistance] = useRecoilState(distanceState);
 
   const increaseDistance = () => {
     if (distance >= 2000) return;
@@ -41,8 +43,6 @@ export default function HomeScreen({
   const header = useHomeHeader();
   const flatlistRef = useRef(null);
 
-  const { data } = useStationList(stationList, "home");
-
   return (
     <>
       <BottomSheet />
@@ -51,6 +51,7 @@ export default function HomeScreen({
           backgroundColor: "white",
           flex: 1,
           width: "100%",
+          overflow: "hidden",
         }}
       >
         <StationCardSection
@@ -79,7 +80,7 @@ export default function HomeScreen({
                 marginBottom: 80,
               }}
             >
-              {(distance < 2000 || isLoading) && data.length !== 0 && (
+              {(distance < 2000 || isLoading) && stationList.length !== 0 && (
                 <IncreaseDistanceButton
                   isLoading={isLoading}
                   setLoading={() => setLoading(true)}
