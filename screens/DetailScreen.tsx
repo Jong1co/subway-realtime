@@ -60,6 +60,7 @@ const DetailScreen = ({
         }}
         stationList={stationList}
         flatlistRef={flatlistRef}
+        LineFooterComponent={<View style={{ height: 92 }} />}
       />
       <StatusBar style="auto" />
     </View>

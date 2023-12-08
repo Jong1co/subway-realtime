@@ -10,5 +10,4 @@ export const Button = styled.TouchableOpacity`
   background-color: #fff;
   align-items: center;
   justify-content: center;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 `;
