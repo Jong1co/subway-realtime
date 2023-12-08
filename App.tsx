@@ -6,7 +6,19 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { RecoilRoot } from "recoil";
 import { StatusBar } from "expo-status-bar";
 import AppLoadingContext from "./context/AppLoadingContext";
-import { StrictMode } from "react";
+import { StrictMode, useEffect } from "react";
+import mobileAds, {
+  TestIds,
+  useInterstitialAd,
+  BannerAd,
+  BannerAdSize,
+} from "react-native-google-mobile-ads";
+
+mobileAds()
+  .initialize()
+  .then((adapterStatuses) => {
+    console.log(adapterStatuses);
+  });
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -25,6 +37,10 @@ export default function App() {
           </ThemeProvider>
         </RecoilRoot>
       </QueryClientProvider>
+      <BannerAd
+        unitId={TestIds.ADAPTIVE_BANNER || ""}
+        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+      />
     </StrictMode>
   );
 }

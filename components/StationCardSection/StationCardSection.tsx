@@ -107,4 +107,4 @@ const StationCardSection = ({
   );
 };
 
-export default React.memo(StationCardSection);
+export default StationCardSection;

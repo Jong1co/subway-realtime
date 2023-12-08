@@ -96,4 +96,4 @@ const BookmarkSection = () => {
   );
 };
 
-export default React.memo(BookmarkSection);
+export default BookmarkSection;
