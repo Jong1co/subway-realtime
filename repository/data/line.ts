@@ -755,7 +755,47 @@ const 원시_일산 = [
   "일산",
 ];
 
-// console.log(원시_일산.reverse());
+const 신내_응암 = [
+  "신내",
+  "봉화산",
+  "화랑대",
+  "태릉입구",
+  "석계",
+  "돌곶이",
+  "상월곡",
+  "월곡",
+  "고려대",
+  "안암",
+  "보문",
+  "창신",
+  "동묘앞",
+  "신당",
+  "청구",
+  "약수",
+  "버티고개",
+  "한강진",
+  "이태원",
+  "녹사평",
+  "삼각지",
+  "효창공원앞",
+  "공덕",
+  "대흥",
+  "광흥창",
+  "상수",
+  "합정",
+  "망원",
+  "마포구청",
+  "월드컵경기장",
+  "디지털미디어시티",
+  "증산",
+  "새절",
+  "응암",
+  "역촌",
+  "불광",
+  "독바위",
+  "연신내",
+  "구산",
+];
 
 /** 종점이 바뀌면 변수 명이 바뀌어야 함 */
 export const routeStore: Record<
@@ -765,6 +805,7 @@ export const routeStore: Record<
     lineList: LineList;
     twoLineStation: string[];
     threeLineStation: string[];
+    oneWay?: string[];
   }
 > = {
   "1001": {
@@ -863,7 +904,21 @@ export const routeStore: Record<
     twoLineStation: ["강동", "천호", "광나루", "아차산"],
     threeLineStation: ["강동"],
   },
-  // "1006": { 신내: [] },
+  "1006": {
+    //Todo: 6호선 어떻게 처리할지
+    // 상행, 하행이 아닌 다른 것임
+    lineList: [
+      {
+        list: [...신내_응암].reverse(),
+        destination: "응암",
+        direction: "상행",
+      },
+      { list: 신내_응암, destination: 신내_응암[0], direction: "하행" },
+    ],
+    oneWay: ["구산", "연신내", "독바위", "불광", "역촌"],
+    twoLineStation: [],
+    threeLineStation: [],
+  },
   "1007": {
     lineList: [
       {

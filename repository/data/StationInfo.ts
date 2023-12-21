@@ -420,8 +420,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Seoul Station",
     station_nm: "서울",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.55455089424185,
+      lng: 126.97059508458507,
     },
   },
   "134": {
@@ -1812,8 +1812,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Jinjeop",
     station_nm: "진접",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.719858630462866,
+      lng: 127.2033418352791,
     },
   },
   "406": {
@@ -1824,8 +1824,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Onam",
     station_nm: "오남",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.705138880415305,
+      lng: 127.19129818156246,
     },
   },
   "408": {
@@ -1836,8 +1836,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Byeollae Byeolgaram",
     station_nm: "별내별가람",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.6676571789783,
+      lng: 127.1160665843012,
     },
   },
   "409": {
@@ -2052,8 +2052,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Seoul Station",
     station_nm: "서울",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.55455089424185,
+      lng: 126.97059508458507,
     },
   },
   "427": {
@@ -2952,8 +2952,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Gangil",
     station_nm: "강일",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.55741496468324,
+      lng: 127.1758165349433,
     },
   },
   "555": {
@@ -2964,8 +2964,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Misa",
     station_nm: "미사",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.56299294343455,
+      lng: 127.19261775130444,
     },
   },
   "556": {
@@ -2976,8 +2976,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Hanam Pungsan",
     station_nm: "하남풍산",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.55238251527631,
+      lng: 127.20406007330061,
     },
   },
   "557": {
@@ -2988,8 +2988,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Hanam City Hall",
     station_nm: "하남시청",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.541940439041305,
+      lng: 127.20637387239448,
     },
   },
   "558": {
@@ -3000,8 +3000,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Hanam Geomdansan",
     station_nm: "하남검단산",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.539772378606514,
+      lng: 127.22311401626526,
     },
   },
   "610": {
@@ -3480,8 +3480,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Yangchon",
     station_nm: "양촌",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.64172908797785,
+      lng: 126.61465909205671,
     },
   },
   "691": {
@@ -3492,8 +3492,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Gurae",
     station_nm: "구래",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.645393696073,
+      lng: 126.62866782222149,
     },
   },
   "692": {
@@ -3600,8 +3600,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Siu",
     station_nm: "시우",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.31316752251141,
+      lng: 126.79591425765936,
     },
   },
   "702": {
@@ -3612,8 +3612,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Wonsi",
     station_nm: "원시",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.302532675266804,
+      lng: 126.78674754436027,
     },
   },
   "709": {
@@ -3948,8 +3948,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Isu",
     station_nm: "이수",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.48523442839498,
+      lng: 126.98145695288629,
     },
   },
   "737": {
@@ -4236,8 +4236,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Sangok",
     station_nm: "산곡",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.508656300409385,
+      lng: 126.70318498591645,
     },
   },
   "761": {
@@ -4392,8 +4392,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Namwirye",
     station_nm: "남위례",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.46268687222102,
+      lng: 127.13948883097196,
     },
   },
   "822": {
@@ -4560,8 +4560,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Wonjong",
     station_nm: "원종",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.523989034108915,
+      lng: 126.80482128991356,
     },
   },
   "840": {
@@ -4596,8 +4596,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Sosaeul",
     station_nm: "소새울",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.4687489321744,
+      lng: 126.79711421020018,
     },
   },
   "843": {
@@ -4608,8 +4608,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Siheung Daeya",
     station_nm: "시흥대야",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.4687489321744,
+      lng: 126.79711421020018,
     },
   },
   "844": {
@@ -4620,8 +4620,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Sincheon",
     station_nm: "신천",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.43940751230534,
+      lng: 126.78688801646692,
     },
   },
   "845": {
@@ -4632,8 +4632,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Sinhyeon",
     station_nm: "신현",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.409486527199576,
+      lng: 126.78786513380612,
     },
   },
   "846": {
@@ -4644,8 +4644,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Siheung City Hall",
     station_nm: "시흥시청",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.38121669487745,
+      lng: 126.8060500409327,
     },
   },
   "847": {
@@ -4656,8 +4656,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Siheung Neunggok",
     station_nm: "시흥능곡",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.36976895964767,
+      lng: 126.80867606931521,
     },
   },
   "848": {
@@ -4668,8 +4668,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Dalmi",
     station_nm: "달미",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.34867725889687,
+      lng: 126.80949706477398,
     },
   },
   "849": {
@@ -4680,8 +4680,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Seonbu",
     station_nm: "선부",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.334230015843694,
+      lng: 126.80996799012905,
     },
   },
   "850": {
@@ -5064,8 +5064,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Samjeon",
     station_nm: "삼전",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.50446241174666,
+      lng: 127.08761856244945,
     },
   },
   "932": {
@@ -5076,8 +5076,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Seokchon Gobun",
     station_nm: "석촌고분",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.502464125554766,
+      lng: 127.09667500055745,
     },
   },
   "933": {
@@ -5100,8 +5100,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Songpanaru",
     station_nm: "송파나루",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.51077538363659,
+      lng: 127.1125148794594,
     },
   },
   "935": {
@@ -5112,8 +5112,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Hanseong Baekje",
     station_nm: "한성백제",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.51640526045267,
+      lng: 127.11628155453877,
     },
   },
   "936": {
@@ -5136,8 +5136,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Dunchon Oryun",
     station_nm: "둔촌오륜",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.5193812876852,
+      lng: 127.13879681216986,
     },
   },
   "938": {
@@ -5148,8 +5148,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "VHS Medical Center",
     station_nm: "중앙보훈병원",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.528298526746134,
+      lng: 127.14840977497975,
     },
   },
   "941": {
@@ -5184,8 +5184,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "April 19th National Cemetery",
     station_nm: "4.19 민주묘지",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.649396519627174,
+      lng: 127.01377069883338,
     },
   },
   "944": {
@@ -5544,8 +5544,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Tangjeong",
     station_nm: "탕정",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 36.78802346326296,
+      lng: 127.08385227361,
     },
   },
   P172: {
@@ -5592,8 +5592,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "PyeongtaekJije",
     station_nm: "평택지제",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.01869037405003,
+      lng: 127.0705529611712,
     },
   },
   "P157-1": {
@@ -6108,8 +6108,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Uncheon",
     station_nm: "운천",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.87977029450131,
+      lng: 126.76999904774976,
     },
   },
   K112: {
@@ -6372,8 +6372,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Seoul Station",
     station_nm: "서울",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.55455089424185,
+      lng: 126.97059508458507,
     },
   },
   K138: {
@@ -7140,8 +7140,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Incheon Intl. Airport",
     station_nm: "인천공항1터미널",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.44740430037279,
+      lng: 126.4524102870883,
     },
   },
   A11: {
@@ -7152,8 +7152,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Incheon Int’l Airport Terminal 2",
     station_nm: "인천공항2터미널",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.4684773681757,
+      lng: 126.43301707863628,
     },
   },
   A072: {
@@ -7188,8 +7188,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Seoul Station",
     station_nm: "서울",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.55455089424185,
+      lng: 126.97059508458507,
     },
   },
   A07: {
@@ -7320,8 +7320,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Sari",
     station_nm: "사리",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.29093863598332,
+      lng: 126.8571523757318,
     },
   },
   K220: {
@@ -7464,8 +7464,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Gosaek",
     station_nm: "고색",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.24967441448801,
+      lng: 126.98030315385988,
     },
   },
   K247: {
@@ -7476,8 +7476,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Omokcheon",
     station_nm: "오목천",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.243255109306986,
+      lng: 126.96389499637154,
     },
   },
   K248: {
@@ -7488,8 +7488,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Eocheon",
     station_nm: "어천",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.249969966377854,
+      lng: 126.90899966167603,
     },
   },
   K249: {
@@ -7500,8 +7500,8 @@ export const stationInfo: Record<StationId, StationInfo> = {
     station_nm_eng: "Yamok",
     station_nm: "야목",
     coordinate: {
-      lat: 0,
-      lng: 0,
+      lat: 37.2613102267425,
+      lng: 126.88395957931152,
     },
   },
   K259: {
