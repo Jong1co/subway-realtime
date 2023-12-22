@@ -84,7 +84,6 @@ const useFindAroundStation = () => {
   const findLocation = () => {
     Geolocation.getCurrentPosition(
       (info) => {
-        console.log(info);
         setLocation({
           lat: info.coords.latitude,
           lng: info.coords.longitude,
@@ -112,7 +111,6 @@ const useFindAroundStation = () => {
   useEffect(() => {
     if (location.lat === 0 && location.lng === 0) return;
     if (!refresh) return;
-    console.log("refresh");
     const lineList = findStationByDistance(location, distance);
 
     const result = lineList.reduce((accr, curr) => {

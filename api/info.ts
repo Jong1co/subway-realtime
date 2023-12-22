@@ -16,9 +16,8 @@ export class InfoRepository {
 
   getIsFirst = async () => {
     try {
-      // const data = await this.asyncStorage.getItem("info");
-      // return data ? JSON.parse(data) : true;
-      return true;
+      const data = await this.asyncStorage.getItem("info");
+      return data ? JSON.parse(data) : true;
     } catch (e) {
       console.error(e);
     }

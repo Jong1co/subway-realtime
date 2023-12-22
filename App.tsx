@@ -17,7 +17,7 @@ import mobileAds, {
 mobileAds()
   .initialize()
   .then((adapterStatuses) => {
-    console.log(adapterStatuses);
+    // console.log(adapterStatuses);
   });
 
 export default function App() {

@@ -21,7 +21,7 @@ const useStationList = (stationList: StationList, key: string) => {
         })),
         pending: result.some(({ isLoading, isFetching }) => isLoading),
         success: result.every(({ isSuccess }) => isSuccess),
-        isFetching: result.every(({ isFetching }) => isFetching),
+        isFetching: result.some(({ isFetching, isFetched }) => isFetched),
       };
     },
   });

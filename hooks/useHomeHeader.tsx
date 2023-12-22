@@ -24,7 +24,6 @@ const useHomeHeader = () => {
       }
     )
       .then((a) => {
-        console.log(a);
         // const { district, name, city } = a[0];
         navigation.setOptions({
           header: () => {

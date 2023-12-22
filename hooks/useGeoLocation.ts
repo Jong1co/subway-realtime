@@ -53,7 +53,6 @@ const useGeoLocation = () => {
   useEffect(() => {
     if (location.stale) {
       requestPermission().then((result) => {
-        console.log(result);
         if (result === "granted") {
           getGeoLocation();
         }

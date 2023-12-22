@@ -24,9 +24,9 @@ export class StorageBookmarkRepository implements BookmarkRepository {
 
   getBookmarks = async () => {
     try {
-      // const data = await this.asyncStorage.getItem("bookmarks");
-      // return data ? JSON.parse(data) : [];
-      return [] as any;
+      const data = await this.asyncStorage.getItem("bookmarks");
+      // console.log(data);
+      return data ? JSON.parse(data) : [];
     } catch (e) {
       console.error(e);
     }
@@ -49,7 +49,6 @@ export class StorageBookmarkRepository implements BookmarkRepository {
   removeBookmark = async (bookmark: Bookmark) => {
     try {
       const data = await this.asyncStorage.getItem("bookmarks");
-      console.log(data);
       const bookmarks = data ? JSON.parse(data) : [];
 
       const removedBookmarks = bookmarks.filter((b: Bookmark) => {

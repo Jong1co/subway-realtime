@@ -49,7 +49,6 @@ const useAroundStationList = (
       }
 
       setDistance(newDistance);
-      console.log(newDistance);
       setStationList(filteredStationList);
     }
   }, [location.coordinates, distance]);

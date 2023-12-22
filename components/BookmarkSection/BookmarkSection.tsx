@@ -26,9 +26,9 @@ export type BookmarkInfo = {
 const bookmarkRepository = new StorageBookmarkRepository(AsyncStorage);
 
 const BookmarkSection = () => {
-  // // useEffect(() => {
-  // //   bookmarkRepository.removeAll();
-  // // }, []);
+  // useEffect(() => {
+  //   bookmarkRepository.removeAll();
+  // }, []);
   // const [distance, setDistance] = useRecoilState(distanceState);
   // const [location, setLocation] = useRecoilState(locationState);
 
@@ -70,11 +70,14 @@ const BookmarkSection = () => {
 
   const { loading, completeBookmarkLoading } = useAppLoading();
 
-  const isPreload = bookmarkList.pending;
-
+  const isPreload =
+    (!bookmarkList.pending && bookmarkList.initialPending) ||
+    bookmarkList.data.length === 0;
   useEffect(() => {
-    if (isPreload) return;
-    completeBookmarkLoading();
+    // console.log(bookmarkList.pending, bookmarkList.initialPending);
+    if (isPreload) {
+      completeBookmarkLoading();
+    }
   }, [isPreload]);
 
   return (
