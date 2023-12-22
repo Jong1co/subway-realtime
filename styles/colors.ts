@@ -26,4 +26,5 @@ export const colors = {
   secondary_black: "#19181B",
   primary_100: "#8E2DEF",
   primary_900: "#252228",
+  red_01: "#EF2D2D",
 };

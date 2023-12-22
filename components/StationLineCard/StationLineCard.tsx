@@ -15,6 +15,8 @@ import {
   LineName,
   lineInfo as lineColorInfo,
 } from "../_common/LineBadge/LineBadge";
+import { Text, View } from "react-native";
+import { SvgIcon } from "../_common/SvgIcon/SvgIcon";
 
 type Props = {
   currentStation: string;
@@ -26,6 +28,7 @@ type Props = {
     direction: string;
   }[];
   runningSubwayList: { currentStation: string; lastStation: string }[];
+  remainTime: string;
 };
 
 const StationLineCard = ({
@@ -34,6 +37,7 @@ const StationLineCard = ({
   currentStation,
   runningSubwayList,
   line,
+  remainTime,
 }: Props) => {
   const queryClient = useQueryClient();
 
@@ -84,8 +88,8 @@ const StationLineCard = ({
     <Style.Card key={destination}>
       <Style.TitleSection color={lineColorInfo[line].color}>
         <Style.TitleBox>
-          <Style.NextStation>{nextStation} 방면</Style.NextStation>
           <Style.Direction>({destination})</Style.Direction>
+          <Style.NextStation>{nextStation} 방면</Style.NextStation>
         </Style.TitleBox>
         <BookmarkButton
           isActive={isAlreadyBookmarked}
@@ -93,6 +97,10 @@ const StationLineCard = ({
         />
       </Style.TitleSection>
       <Style.Content>
+        <View style={{ flexDirection: "row", gap: 4, alignItems: "center" }}>
+          <SvgIcon name="Subway" width={16} height={16} fill={"white"} />
+          <Style.RemainTime>{remainTime}</Style.RemainTime>
+        </View>
         {lineInfo.map(({ list, nextStation, direction }, i) => {
           const isUphill = direction === "상행" || direction === "외선";
 

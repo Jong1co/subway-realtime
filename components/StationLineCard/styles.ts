@@ -35,3 +35,8 @@ export const Content = styled.View`
   padding: 8px 16px 12px 16px;
   background: ${({ theme }) => theme.colors.secondary_100};
 `;
+
+export const RemainTime = styled.Text`
+  ${({ theme }) => theme.font.subhead_3};
+  color: ${({ theme }) => theme.colors.red_01};
+`;

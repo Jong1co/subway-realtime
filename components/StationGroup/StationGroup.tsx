@@ -6,11 +6,12 @@ import * as Style from "./styles";
 import StationLineCard from "../StationLineCard/StationLineCard";
 import { getLineCode } from "../../utils/getLineCode";
 import { StationService } from "../../interface/StationService";
+import { StationServiceImpl } from "../../service/StationServiceImpl";
 
 type Props = {
   station: string;
   line: LineName;
-  subwayList: StationService[];
+  subwayList: StationServiceImpl[];
   // subwayList: {}[]
 };
 
@@ -32,6 +33,14 @@ const StationGroup = ({ station, line, subwayList }: Props) => {
             destination={destination} // ex) 인천, 신창, 소요산
             lineInfo={lineInfo}
             line={line}
+            remainTime={
+              (subwayList || [])?.find(
+                (subway) =>
+                  subway.nextStation === lineInfo[0].nextStation &&
+                  subway.line === line &&
+                  subway.isFirst
+              )?.arrivalState || "도착 정보 없음"
+            }
             runningSubwayList={subwayList.reduce((accr, curr) => {
               const nextStation = lineInfo[0].nextStation;
               if (curr.nextStation === nextStation && curr.line === line) {
