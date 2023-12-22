@@ -22,31 +22,35 @@ const useHomeHeader = () => {
       {
         useGoogleMaps: false,
       }
-    ).then((a) => {
-      console.log(a);
-      const { district, name, city } = a[0];
-      navigation.setOptions({
-        header: () => {
-          return (
-            <Header
-              left={
-                <Style.HeaderTitle>
-                  {city} {district}
-                </Style.HeaderTitle>
-              }
-              right={
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("Search")}
-                  activeOpacity={0.9}
-                >
-                  <SvgIcon name="Search" width={24} height={24} />
-                </TouchableOpacity>
-              }
-            />
-          );
-        },
+    )
+      .then((a) => {
+        console.log(a);
+        // const { district, name, city } = a[0];
+        navigation.setOptions({
+          header: () => {
+            return (
+              <Header
+                left={
+                  <Style.HeaderTitle>
+                    {a[0]?.city} {a[0]?.district}
+                  </Style.HeaderTitle>
+                }
+                right={
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate("Search")}
+                    activeOpacity={0.9}
+                  >
+                    <SvgIcon name="Search" width={24} height={24} />
+                  </TouchableOpacity>
+                }
+              />
+            );
+          },
+        });
+      })
+      .catch((e) => {
+        console.log(e);
       });
-    });
   }, [location]);
 
   return;

@@ -70,12 +70,11 @@ const BookmarkSection = () => {
 
   const { loading, completeBookmarkLoading } = useAppLoading();
 
-  const isPreload = !bookmarkList.pending && bookmarkList.initialPending;
+  const isPreload = bookmarkList.pending;
 
   useEffect(() => {
-    if (isPreload) {
-      completeBookmarkLoading();
-    }
+    if (isPreload) return;
+    completeBookmarkLoading();
   }, [isPreload]);
 
   return (

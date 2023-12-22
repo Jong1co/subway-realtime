@@ -68,6 +68,7 @@ const StationCardSection = ({
   const isPreload = loading.home && pending;
 
   useEffect(() => {
+    console.log("pending: ", pending);
     if (isPreload) return;
     completeHomeLoading();
   }, [data, pending]);

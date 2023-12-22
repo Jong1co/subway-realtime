@@ -6,11 +6,15 @@ import { StationServiceImpl } from "../service/StationServiceImpl";
 export const getSubwayListByStation = async ({
   station_nm,
 }: Pick<StationInfo, "station_nm">) => {
-  const { data } = await seoulApi.get(
-    `/realtimeStationArrival/1/20/${station_nm}`
-  );
-
-  return (data.realtimeArrivalList as RealTimeArrival[]).map(
-    (realtimeArrival) => new StationServiceImpl(realtimeArrival)
-  );
+  try {
+    const { data } = await seoulApi.get(
+      `/realtimeStationArrival/1/20/${station_nm}`
+    );
+    console.log(data);
+    return (data.realtimeArrivalList as RealTimeArrival[]).map(
+      (realtimeArrival) => new StationServiceImpl(realtimeArrival)
+    );
+  } catch (e) {
+    console.error(e);
+  }
 };

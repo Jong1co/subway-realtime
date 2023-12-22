@@ -4,6 +4,7 @@ import useAppLoading from "../hooks/useAppLoading";
 import SplashScreen from "react-native-splash-screen";
 
 // SplashScreen.show();
+// SplashScreen.hide();
 
 const AppLoadingContext = ({ children }: PropsWithChildren) => {
   // const [loaded] = useFonts({
@@ -17,6 +18,7 @@ const AppLoadingContext = ({ children }: PropsWithChildren) => {
   // }, []);
 
   useEffect(() => {
+    console.log(loading);
     if (loading.bookmark === false && loading.home === false) {
       console.log(loading);
       SplashScreen.hide();

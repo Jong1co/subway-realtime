@@ -116,7 +116,7 @@ const useFindAroundStation = () => {
     const lineList = findStationByDistance(location, distance);
 
     const result = lineList.reduce((accr, curr) => {
-      isAvailableLine(curr.line_num) && accr.push(curr);
+      isAvailableLine(curr.line_num as any) && accr.push(curr);
       return accr;
     }, [] as StationInfo[]);
 
