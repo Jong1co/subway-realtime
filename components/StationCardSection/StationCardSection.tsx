@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   FlatList,
   RefreshControl,
@@ -27,11 +27,13 @@ type Props = {
   onRefresh?: () => void;
   increaseDistance?: () => void;
   queryKey: string;
+  setIsViewList?: (station: string) => void;
   // distance: number;
 };
 
 const StationCardSection = ({
   // distance,
+  setIsViewList,
   stationList,
   LineHeaderComponent,
   flatlistRef,
@@ -74,7 +76,20 @@ const StationCardSection = ({
       completeHomeLoading();
     }
   }, [data, pending, success, isFetching]);
+  const onViewableItemsChanged = useRef(({ viewableItems }: any) => {
+    try {
+      setIsViewList && setIsViewList(viewableItems[0].item.line);
+      console.log(viewableItems[0].item.line);
+      //do anything
+    } catch (error) {
+      console.log(error);
+    }
+  }).current;
 
+  const viewabilityConfig = {
+    waitForInteraction: true,
+    itemVisiblePercentThreshold: 100, //Check the price that best suits your needs.
+  };
   if (isPreload) {
     return null;
   }
@@ -83,7 +98,8 @@ const StationCardSection = ({
     <>
       <FlatList
         data={data}
-        // data={data}
+        viewabilityConfig={viewabilityConfig}
+        onViewableItemsChanged={onViewableItemsChanged}
         ListHeaderComponent={LineHeaderComponent}
         ListFooterComponent={LineFooterComponent}
         ListEmptyComponent={StationEmptyComponent}
@@ -100,7 +116,9 @@ const StationCardSection = ({
         )}
         renderItem={({ item }) => <StationGroup {...item} />}
         keyExtractor={(item, index) => {
-          return item.station + item.line + Math.random();
+          return setIsViewList
+            ? item.station + item.line
+            : item.station + item.line + Math.random();
           // return item.station + item.line;
         }}
         ref={flatlistRef}

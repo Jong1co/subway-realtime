@@ -20,6 +20,8 @@ const DetailScreen = ({
 
   const flatlistRef = useRef(null);
 
+  const [isViewList, setIsViewList] = useState<string>(lines[0]);
+
   const moveToLine = (line: string) => {
     const index = lines.findIndex((item) => item === line);
     (flatlistRef.current as any).scrollToIndex({ index, animated: true });
@@ -40,13 +42,14 @@ const DetailScreen = ({
           <View style={{ marginRight: 8 }} key={line}>
             <LineTOC
               line={line}
-              isActive={true}
+              isActive={line === isViewList}
               onPress={() => moveToLine(line)}
             />
           </View>
         ))}
       </View>
       <StationCardSection
+        setIsViewList={setIsViewList}
         queryKey={station}
         refresh={refresh}
         onRefresh={() => {

@@ -18,6 +18,7 @@ export const Badge = styled.TouchableOpacity<{
     isActive
       ? theme.colors[color as keyof typeof theme.colors]
       : theme.colors.secondary_400};
+  transition: 0.15s ease-in-out;
 `;
 
 export const BadgeText = styled.Text<{ isActive: boolean }>`
