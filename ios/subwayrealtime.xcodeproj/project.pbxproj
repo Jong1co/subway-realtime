@@ -358,6 +358,7 @@
 					"FB_SONARKIT_ENABLED=1",
 				);
 				INFOPLIST_FILE = subwayrealtime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "실시간 지하철 - 위치";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -387,6 +388,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6A9P8S5XQX;
 				INFOPLIST_FILE = subwayrealtime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "실시간 지하철 - 위치";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
