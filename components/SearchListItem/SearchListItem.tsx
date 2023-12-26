@@ -13,7 +13,7 @@ type Props = {
 const SearchListItem = ({ item, onPress }: Props) => {
   return (
     <Style.StationListItem onPress={() => onPress(item)}>
-      <Style.StationTitle>{item.station}역</Style.StationTitle>
+      <Style.StationTitle>{item.station}</Style.StationTitle>
       <Style.LineWrapper>
         {item.lines.map((line) => (
           <View key={line} style={{ marginLeft: 4 }}>
