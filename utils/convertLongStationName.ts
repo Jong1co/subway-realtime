@@ -14,6 +14,8 @@ const longName = {
 type LongName = keyof typeof longName;
 
 const convertLongStationName = (station: string) => {
+  station = station.split("(")[0];
+
   if (longName[station as LongName]) {
     return longName[station as LongName];
   }
