@@ -47,7 +47,7 @@ const StationCardSection = ({
 
   const onRefreshByButton = () => {
     setPause(true);
-    queryClient.invalidateQueries({ queryKey: ["subway", queryKey] });
+    queryClient.invalidateQueries({ queryKey: ["subway"] });
     queryClient.invalidateQueries({ queryKey: ["bookmark"] });
   };
 
@@ -70,12 +70,13 @@ const StationCardSection = ({
   const isPreload = loading.home && pending;
 
   useEffect(() => {
-    console.log("success: ", success, isFetching);
+    // console.log("success: ", success, isFetching);
     // if (isPreload) return;
     if (loading.home && success && isFetching) {
       completeHomeLoading();
     }
   }, [data, pending, success, isFetching]);
+
   const onViewableItemsChanged = useRef(({ viewableItems }: any) => {
     try {
       setIsViewList && setIsViewList(viewableItems[0].item.line);
@@ -90,6 +91,7 @@ const StationCardSection = ({
     waitForInteraction: true,
     itemVisiblePercentThreshold: 100, //Check the price that best suits your needs.
   };
+
   if (isPreload) {
     return null;
   }

@@ -7,20 +7,24 @@ import addDirectionText from "../../utils/addDirectionText";
 import { useQuery } from "@tanstack/react-query";
 import { getSubwayListByStation } from "../../api/station";
 import convertLongStationName from "../../utils/convertLongStationName";
+import { LineName } from "../_common/LineBadge/LineBadge";
+import { DrawLineInfo } from "../StationLineCard/StationLineCard";
 
 type Props = {
   list: string[];
   currentStation: string;
-  runningSubwayList: { currentStation: string; lastStation: string }[];
+  runningSubwayList: DrawLineInfo[];
   color: string;
   isUphill: boolean;
   comparisonStation: string;
+  line: LineName;
 };
 
 const StationLine = ({
   list,
   currentStation,
   runningSubwayList,
+  line,
   color,
   isUphill,
   comparisonStation,
@@ -31,20 +35,44 @@ const StationLine = ({
     enabled: comparisonStation !== currentStation,
     initialData: [],
   });
-
   const runningList = data?.reduce((accr, curr) => {
-    if (curr.isUphill === isUphill) {
+    if (curr.isUphill === isUphill && curr.line === line) {
       accr.push({
         currentStation: curr.currentStation,
         lastStation: curr.lastStation,
+        isExpress: curr.isExpress,
+        isSuperExpress: curr.isSuperExpress,
       });
     }
     return accr;
-  }, [] as { currentStation: string; lastStation: string }[]);
+  }, [] as DrawLineInfo[]);
+
+  // if (comparisonStation !== currentStation) {
+  //   console.log("------1");
+  //   console.log(
+  //     data.filter((v) => v.line === line)
+  //     // .map((v) => ({
+  //     //   currentStation: v.currentStation,
+  //     //   lastStation: v.lastStation,
+  //     // }))
+  //   );
+  //   console.log("------2");
+  //   // console.log(runningList);
+  //   console.log("------3");
+  // }
+  //   console.log(isUphill);
+
+  //   console.log("gd", currentStation);
+  //   console.log(
+  //     "comparisonStation === currentStation",
+  //     comparisonStation === currentStation
+  //   );
+  //   console.log(runningList);
+  //   console.log("------");
+  // }
 
   const resultList =
     comparisonStation === currentStation ? runningSubwayList : runningList;
-
   return (
     <View
       style={{
@@ -72,13 +100,6 @@ const StationLine = ({
             runningSubwayStation === item
         );
 
-        // const hasSubway = runningSubwayList.find(
-        //   (subway) =>
-        //     subway.arvlMsg3.includes(item) &&
-        //     ((subway.updnLine === "상행" && direction === "right") ||
-        //       (subway.updnLine === "하행" && direction === "left"))
-        // );
-        // console.log("hasSubway", hasSubway, item);
         return (
           <View
             key={item}
@@ -95,6 +116,8 @@ const StationLine = ({
             {hasSubway ? (
               <View style={{ alignItems: "center" }}>
                 <Style.SubwayDestination>
+                  {hasSubway.isExpress && "(급)"}
+                  {hasSubway.isSuperExpress && "(특)"}
                   {addDirectionText(hasSubway.lastStation)}
                 </Style.SubwayDestination>
                 <Style.Subway isUphill={isUphill}>

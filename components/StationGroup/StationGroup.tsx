@@ -3,7 +3,9 @@ import { View } from "react-native";
 import { LineServiceImpl } from "../../service/LineServiceImpl";
 import LineBadge, { LineName } from "../_common/LineBadge/LineBadge";
 import * as Style from "./styles";
-import StationLineCard from "../StationLineCard/StationLineCard";
+import StationLineCard, {
+  DrawLineInfo,
+} from "../StationLineCard/StationLineCard";
 import { getLineCode } from "../../utils/getLineCode";
 import { StationService } from "../../interface/StationService";
 import { StationServiceImpl } from "../../service/StationServiceImpl";
@@ -49,11 +51,13 @@ const StationGroup = ({ station, line, subwayList }: Props) => {
                   {
                     currentStation: curr.currentStation,
                     lastStation: curr.lastStation,
+                    isExpress: curr.isExpress,
+                    isSuperExpress: curr.isSuperExpress,
                   },
                 ];
               }
               return accr;
-            }, [] as { currentStation: string; lastStation: string }[])}
+            }, [] as DrawLineInfo[])}
           />
         </View>
       ))}

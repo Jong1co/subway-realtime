@@ -18,6 +18,13 @@ import {
 import { Text, View } from "react-native";
 import { SvgIcon } from "../_common/SvgIcon/SvgIcon";
 
+export type DrawLineInfo = {
+  currentStation: string; //
+  lastStation: string;
+  isExpress: boolean;
+  isSuperExpress: boolean;
+};
+
 type Props = {
   currentStation: string;
   destination: string;
@@ -27,7 +34,7 @@ type Props = {
     nextStation: string;
     direction: string;
   }[];
-  runningSubwayList: { currentStation: string; lastStation: string }[];
+  runningSubwayList: DrawLineInfo[];
   remainTime: string;
 };
 
@@ -106,6 +113,7 @@ const StationLineCard = ({
 
           return (
             <StationLine
+              line={line}
               color={lineColorInfo[line].color}
               key={nextStation + i}
               list={isUphill ? [...list].reverse() : list}

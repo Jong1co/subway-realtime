@@ -37,7 +37,11 @@ export class StationServiceImpl implements StationService {
   }
 
   get isExpress() {
-    return this.realTimeArrival.arvlCd === "0";
+    return this.realTimeArrival.btrainSttus === "급행";
+  }
+
+  get isSuperExpress() {
+    return this.realTimeArrival.btrainSttus === "특급";
   }
 
   get nextStation() {
