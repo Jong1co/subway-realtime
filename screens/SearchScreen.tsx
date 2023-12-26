@@ -60,13 +60,6 @@ const SearchScreen = ({
         keyExtractor={({ station }) => station}
         onEndReached={() => fetchNextPage()}
         onEndReachedThreshold={0.5}
-        // RemoveClippedSubviews={true}
-        // maxToRenderPerBatch={15}
-        // updateCellsBatchingPeriod={100}
-        // initialNumToRender={15}
-        // windowSize={16}
-        // getItemCount={(data) => data.length}
-        // getItem={(data, index) => data[index]}
       />
       <StatusBar style="auto" />
     </View>

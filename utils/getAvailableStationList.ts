@@ -549,6 +549,10 @@ const lineData: { station: string; lines: LineName[] }[] = [
   { lines: ["신분당선"], station: "청계산입구" },
 ];
 
+export const getLines = (station: string): LineName[] => {
+  return lineData.find((item) => item.station === station)?.lines || [];
+};
+
 const getAvailableStationList = (keyword: string, page: number) => {
   if (keyword === "") return lineData.slice(page * 15, (page + 1) * 15);
   const filteredList = lineData.filter(({ station }) =>

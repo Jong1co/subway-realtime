@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../router/Router";
 import { SvgIcon } from "../_common/SvgIcon/SvgIcon";
+import { getLines } from "../../utils/getAvailableStationList";
 
 type Props = BookmarkInfo;
 type RootStackNavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -21,7 +22,9 @@ const Bookmark = ({
 
   return (
     <Style.Card
-      onPress={() => navigation.navigate("Detail", { station, lines: [line] })}
+      onPress={() =>
+        navigation.navigate("Detail", { station, lines: getLines(station) })
+      }
     >
       <Style.CardTitle>
         <Style.DirectionWrapper>
