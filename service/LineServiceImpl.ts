@@ -8,6 +8,9 @@ export class LineServiceImpl implements LineService {
   // 분기점이 되는 역
   private _threeLineStation: string[] = [];
 
+  // 6호선 단방향
+  private _oneWay: string[] | undefined = [];
+
   //상행, 하행 역
   private _lineList: {
     list: string[];
@@ -21,6 +24,7 @@ export class LineServiceImpl implements LineService {
       this._lineList = routeInfo.lineList;
       this._twoLineStation = routeInfo.twoLineStation;
       this._threeLineStation = routeInfo.threeLineStation;
+      this._oneWay = routeInfo.oneWay;
     }
   }
 
@@ -35,6 +39,117 @@ export class LineServiceImpl implements LineService {
       nextStation: string;
       direction: string;
     }[] = [];
+    if (this.lineCode === "1006") {
+      if (this.station === "응암순환(상선)") {
+        return {
+          "응암순환(상선)": [
+            {
+              list: [
+                "응암순환(상선)",
+                "월드컵경기장(성산)",
+                "디지털미디어시티",
+                "증산(명지대앞)",
+                "새절(신사)",
+              ],
+              nextStation: "역촌",
+              direction: "상행",
+            },
+          ],
+          신내: [
+            {
+              list: [
+                "응암순환(상선)",
+                "구산", //
+                "연신내",
+                "독바위",
+                "불광",
+              ],
+              nextStation: "새절",
+              direction: "하행",
+            },
+          ],
+        };
+      }
+      if (this.station === "역촌") {
+        return {
+          신내: [
+            {
+              list: [
+                "역촌",
+                "응암순환(상선)",
+                "새절(신사)",
+                "증산(명지대앞)",
+                "디지털미디어시티",
+              ],
+              destination: "신내",
+              nextStation: "불광",
+              direction: "하행",
+            },
+          ],
+        };
+      }
+      if (this.station === "불광") {
+        return {
+          신내: [
+            {
+              list: [
+                "불광",
+                "역촌",
+                "응암순환(상선)",
+                "새절(신사)",
+                "증산(명지대앞)",
+              ],
+              destination: "신내",
+              nextStation: "독바위",
+              direction: "하행",
+            },
+          ],
+        };
+      }
+      if (this.station === "독바위") {
+        return {
+          신내: [
+            {
+              list: ["독바위", "불광", "역촌", "응암순환(상선)", "새절(신사)"],
+              destination: "신내",
+              nextStation: "연신내",
+              direction: "하행",
+            },
+          ],
+        };
+      }
+      if (this.station === "연신내") {
+        return {
+          신내: [
+            {
+              list: ["연신내", "독바위", "불광", "역촌", "응암순환(상선)"],
+              destination: "신내",
+              nextStation: "구산",
+              direction: "하행",
+            },
+          ],
+        };
+      }
+      if (this.station === "구산") {
+        return {
+          신내: [
+            {
+              list: [
+                "구산",
+                "연신내",
+                "독바위",
+                "불광", //
+                "역촌",
+              ],
+              destination: "신내",
+              nextStation: "응암순환(상선)",
+              direction: "하행",
+            },
+          ],
+        };
+      }
+    }
+
     this._lineList.forEach((line) => {
       const index = line.list.indexOf(this.station);
       if (index === -1) {
@@ -44,7 +159,13 @@ export class LineServiceImpl implements LineService {
 
       let createdLine: string[] = [];
 
-      // console.log(line.direction, line.list);
+      // if (this.lineCode === "1006" && this._oneWay) {
+      //   if (this._oneWay.includes(this.station)) {
+      //     createdLine = line.list.slice(index, index + 5);
+      //   } else {
+      //     createdLine = line.list.slice(index, index + 5);
+      //   }
+      // } else
       if (this.lineCode === "1002" && line.list.length > 10) {
         while (createdLine.length < 5) {
           createdLine.push(
