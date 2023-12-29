@@ -10,11 +10,13 @@ export const getSubwayListByStation = async ({
     const { data } = await seoulApi.get(
       `/realtimeStationArrival/1/20/${station_nm}`
     );
+    // console.log(data.realtimeArrivalList);
+    //새절
     return ((data.realtimeArrivalList as RealTimeArrival[]) || []).map(
       (realtimeArrival) => new StationServiceImpl(realtimeArrival)
     );
   } catch (e) {
-    console.error(e);
+    console.error("hi", e);
     return [];
   }
 };

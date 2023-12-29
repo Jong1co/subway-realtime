@@ -73,6 +73,7 @@ const StationLine = ({
 
   const resultList =
     comparisonStation === currentStation ? runningSubwayList : runningList;
+
   return (
     <View
       style={{
@@ -100,6 +101,12 @@ const StationLine = ({
             runningSubwayStation === item
         );
 
+        const subwayIcon = hasSubway?.isExpress
+          ? "Express"
+          : hasSubway?.isSuperExpress
+          ? "Super"
+          : "Subway";
+
         return (
           <View
             key={item}
@@ -122,7 +129,7 @@ const StationLine = ({
                 </Style.SubwayDestination>
                 <Style.Subway isUphill={isUphill}>
                   <SvgIcon
-                    name="Subway"
+                    name={subwayIcon}
                     width={16}
                     height={16}
                     fill={"white"}
@@ -131,7 +138,12 @@ const StationLine = ({
               </View>
             ) : (
               <View style={{ opacity: 0 }}>
-                <SvgIcon name="Subway" width={16} height={16} fill={"white"} />
+                <SvgIcon
+                  name={subwayIcon}
+                  width={16}
+                  height={16}
+                  fill={"white"}
+                />
               </View>
             )}
             <View
@@ -161,6 +173,7 @@ const StationLine = ({
                 flex: 1,
                 width: 100,
                 marginTop: 8,
+                fontWeight: isCurrentStation ? "500" : "400",
                 color: isCurrentStation ? "black" : "gray",
               }}
             >

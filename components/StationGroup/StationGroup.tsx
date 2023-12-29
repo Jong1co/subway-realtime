@@ -38,15 +38,19 @@ const StationGroup = ({ station, line, subwayList }: Props) => {
             remainTime={
               (subwayList || [])?.find(
                 (subway) =>
-                  subway.nextStation === lineInfo[0].nextStation &&
+                  subway.nextStation ===
+                    lineInfo[0].nextStation.split("(")[0] &&
                   subway.line === line &&
                   subway.isFirst
               )?.arrivalState || "도착 정보 없음"
             }
             runningSubwayList={subwayList.reduce((accr, curr) => {
-              const nextStation = lineInfo[0].nextStation;
+              const nextStation = lineInfo[0].nextStation.split("(")[0];
+              console.log(curr.nextStation, nextStation); //일치하지 않음
               if (curr.nextStation === nextStation && curr.line === line) {
                 return [
+                  //부평구청
+                  //삼산체육관
                   ...accr,
                   {
                     currentStation: curr.currentStation,
