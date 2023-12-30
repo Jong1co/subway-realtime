@@ -30,8 +30,11 @@ const StationLine = ({
   comparisonStation,
 }: Props) => {
   const { data } = useQuery({
-    queryKey: ["subway", currentStation],
-    queryFn: () => getSubwayListByStation({ station_nm: comparisonStation }),
+    queryKey: ["subway", currentStation, comparisonStation],
+    queryFn: () =>
+      getSubwayListByStation({
+        station_nm: comparisonStation === "성수" ? "용답" : comparisonStation,
+      }),
     enabled: comparisonStation !== currentStation,
     initialData: [],
   });
@@ -47,17 +50,13 @@ const StationLine = ({
     return accr;
   }, [] as DrawLineInfo[]);
 
+  // console.log(currentStation);
+
   // if (comparisonStation !== currentStation) {
   //   console.log("------1");
-  //   console.log(
-  //     data.filter((v) => v.line === line)
-  //     // .map((v) => ({
-  //     //   currentStation: v.currentStation,
-  //     //   lastStation: v.lastStation,
-  //     // }))
-  //   );
   //   console.log("------2");
-  //   // console.log(runningList);
+  //   console.log(comparisonStation + "방면");
+  //   console.log(runningList);
   //   console.log("------3");
   // }
   //   console.log(isUphill);

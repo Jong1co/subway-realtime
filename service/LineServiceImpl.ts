@@ -46,10 +46,10 @@ export class LineServiceImpl implements LineService {
             {
               list: [
                 "응암순환(상선)",
-                "월드컵경기장(성산)",
-                "디지털미디어시티",
-                "증산(명지대앞)",
                 "새절(신사)",
+                "증산(명지대앞)",
+                "디지털미디어시티",
+                "월드컵경기장(성산)",
               ],
               nextStation: "역촌",
               direction: "상행",
