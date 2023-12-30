@@ -2,11 +2,6 @@ import { RealTimeArrival } from "../repository/data/dummy";
 import { StationService } from "../interface/StationService";
 import { getLineName } from "../utils/getLineName";
 
-/**
- * 환승역일 경우와, 환승역이 아닐 경우 나눠서 구현해야함 (각각 호선의 ! 다른 환승역은 필요 없음)
- * 환승역 경우 : 구로역, 강동역 뿐
- */
-
 export class StationServiceImpl implements StationService {
   constructor(private realTimeArrival: RealTimeArrival) {}
 
