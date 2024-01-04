@@ -14,6 +14,7 @@ const useHomeHeader = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
+    if (location.loaded === false) return;
     Location.reverseGeocodeAsync(
       {
         latitude: location.coordinates.lat,
@@ -24,7 +25,6 @@ const useHomeHeader = () => {
       }
     )
       .then((a) => {
-        // const { district, name, city } = a[0];
         navigation.setOptions({
           header: () => {
             return (
