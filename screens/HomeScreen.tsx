@@ -45,7 +45,7 @@ export default function HomeScreen({
 
   return (
     <>
-      <BottomSheet />
+      {/* <BottomSheet /> */}
       <View
         style={{
           backgroundColor: "white",

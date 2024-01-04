@@ -15,6 +15,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const BottomSheet = () => {
   const info = new InfoRepository(AsyncStorage);
+  // info.reset();
   const queryClient = useQueryClient();
   const { data: openBottomSheet } = useQuery({
     queryKey: ["info"],

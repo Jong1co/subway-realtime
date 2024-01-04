@@ -30,4 +30,12 @@ export class InfoRepository {
       console.error(e);
     }
   };
+
+  reset = async () => {
+    try {
+      await this.asyncStorage.setItem("info", JSON.stringify(true));
+    } catch (e) {
+      console.error(e);
+    }
+  };
 }
