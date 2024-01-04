@@ -12,6 +12,7 @@ export const getSubwayListByStation = async ({
     );
     // console.log(data.realtimeArrivalList);
     //새절
+    console.log(data);
     return ((data.realtimeArrivalList as RealTimeArrival[]) || []).map(
       (realtimeArrival) => new StationServiceImpl(realtimeArrival)
     );
