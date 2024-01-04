@@ -1,6 +1,7 @@
 import { registerRootComponent } from "expo";
 
 import App from "./App";
+import { Text, TextInput } from "react-native";
 
 Text.defaultProps = Text.defaultProps || {};
 Text.defaultProps.allowFontScaling = false;
