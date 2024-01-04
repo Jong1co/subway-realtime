@@ -16,6 +16,8 @@
     <string>실시간 지하철 - 위치</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CodePushDeploymentKey</key>
+	<string>x3kRa5_KEtAvOrzJTImum49UDQd502b0PKYDt</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>

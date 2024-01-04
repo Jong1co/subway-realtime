@@ -13,6 +13,7 @@ import mobileAds, {
   BannerAd,
   BannerAdSize,
 } from "react-native-google-mobile-ads";
+import CodePush from "react-native-code-push";
 
 mobileAds()
   .initialize()
@@ -20,7 +21,7 @@ mobileAds()
     // console.log(adapterStatuses);
   });
 
-export default function App() {
+function App() {
   const queryClient = new QueryClient();
 
   return (
@@ -44,6 +45,8 @@ export default function App() {
     </StrictMode>
   );
 }
+
+export default CodePush(App);
 /**
  * 기능 정의
  * -- 1. 보여주기 기능

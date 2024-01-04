@@ -1,3 +1,4 @@
 <resources>
 	<string name="app_name">실시간 지하철 위치</string>
+	<string moduleConfig="true" name="CodePushDeploymentKey">x3kRa5_KEtAvOrzJTImum49UDQd502b0PKYDt</string>
 </resources>
