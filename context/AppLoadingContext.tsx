@@ -3,21 +3,13 @@ import React, { PropsWithChildren, useEffect, useState } from "react";
 import useAppLoading from "../hooks/useAppLoading";
 import SplashScreen from "react-native-splash-screen";
 import BottomSheet from "../components/_common/BottomSheet/BottomSheet";
-
-// SplashScreen.show();
-// SplashScreen.hide();
+import useObserveAppState from "../hooks/useObserveAppState";
 
 const AppLoadingContext = ({ children }: PropsWithChildren) => {
-  // const [loaded] = useFonts({
-  //   Pretendard: require("../assets/font/PretendardVariable.ttf"),
-  // });
   const [load, setLoad] = useState(false);
+  const {} = useObserveAppState();
 
   const { loading } = useAppLoading();
-
-  // useEffect(() => {
-  //   SplashScreen.show();
-  // }, []);
 
   useEffect(() => {
     // console.log(loading);

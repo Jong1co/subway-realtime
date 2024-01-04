@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { locationState } from "../atom/locationState";
 import Geolocation from "react-native-geolocation-service";
-import { PermissionsAndroid, Platform } from "react-native";
+import { Linking, PermissionsAndroid, Platform } from "react-native";
 
 const useGeoLocation = () => {
   const [location, setLocation] = useRecoilState(locationState);
@@ -40,7 +40,7 @@ const useGeoLocation = () => {
         (error) => {
           console.log(error.code, error.message);
         },
-        { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
+        { enableHighAccuracy: false, timeout: 15000, maximumAge: 10000 }
       );
     } catch (e) {
       console.log(e);
@@ -51,19 +51,37 @@ const useGeoLocation = () => {
     setLocation((prev) => ({ ...prev, stale: true }));
   };
 
+  const requestPermissionFunc = async () => {
+    requestPermission().then((result) => {
+      if (result === "never_ask_again") {
+        alert("위치 정보 수집 권한이 필요합니다.");
+        navigateToSettings();
+        return;
+      }
+
+      if (result === "granted") {
+        getGeoLocation();
+      }
+    });
+  };
+
   useEffect(() => {
     if (location.stale) {
-      requestPermission().then((result) => {
-        console.log("result", result);
-
-        if (result === "granted") {
-          getGeoLocation();
-        }
-      });
+      requestPermissionFunc();
     }
   }, [location.stale]);
 
-  return { location, invalidateLocation };
+  const navigateToSettings = () => {
+    if (Platform.OS === "android") {
+      // Android의 경우 애플리케이션 설정 페이지로 이동
+      Linking.openSettings();
+    } else {
+      // iOS의 경우 애플리케이션 설정 페이지로 이동
+      Linking.openURL("app-settings:");
+    }
+  };
+
+  return { location, invalidateLocation, requestPermissionFunc };
 };
 
 export default useGeoLocation;

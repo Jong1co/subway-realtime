@@ -79,8 +79,9 @@ const StationCardSection = ({
 
   const onViewableItemsChanged = useRef(({ viewableItems }: any) => {
     try {
+      // console.log(viewableItems);
+      if (viewableItems.length === 0) return;
       setIsViewList && setIsViewList(viewableItems[0].item.line);
-      console.log(viewableItems[0].item.line);
       //do anything
     } catch (error) {
       console.log(error);
@@ -89,7 +90,7 @@ const StationCardSection = ({
 
   const viewabilityConfig = {
     waitForInteraction: true,
-    itemVisiblePercentThreshold: 100, //Check the price that best suits your needs.
+    itemVisiblePercentThreshold: 80, //Check the price that best suits your needs.
   };
 
   if (isPreload) {
