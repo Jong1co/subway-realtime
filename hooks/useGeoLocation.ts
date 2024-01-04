@@ -27,6 +27,7 @@ const useGeoLocation = () => {
     try {
       Geolocation.getCurrentPosition(
         (position) => {
+          // console.log("position", position);
           setLocation({
             loaded: true,
             stale: false,
@@ -53,6 +54,8 @@ const useGeoLocation = () => {
   useEffect(() => {
     if (location.stale) {
       requestPermission().then((result) => {
+        console.log("result", result);
+
         if (result === "granted") {
           getGeoLocation();
         }

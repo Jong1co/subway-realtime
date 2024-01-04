@@ -20,6 +20,7 @@ const AppLoadingContext = ({ children }: PropsWithChildren) => {
   // }, []);
 
   useEffect(() => {
+    // console.log(loading);
     if (loading.bookmark === false && loading.home === false) {
       SplashScreen.hide();
       setLoad(true);
