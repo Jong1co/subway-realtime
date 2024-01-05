@@ -1,20 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { AppState, AppStateStatus } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { AppState, AppStateStatus, Platform } from "react-native";
 import useGeoLocation from "./useGeoLocation";
+import { useRecoilState } from "recoil";
 
 const useObserveAppState = () => {
   const { requestPermissionFunc } = useGeoLocation();
-  const [appState, setAppState] = useState(AppState.currentState);
+  const appState = useRef(AppState.currentState);
 
   useEffect(() => {
     const handleAppStateChange = (nextAppState: AppStateStatus) => {
-      if (nextAppState === "active") {
+      if (nextAppState === "active" && Platform.OS === "ios") {
         requestPermissionFunc();
       }
+      appState.current = nextAppState;
     };
 
-    // AppState 변경 감지를 위한 이벤트 리스너 등록
-    AppState.addEventListener("change", handleAppStateChange);
+    const subscription = AppState.addEventListener(
+      "change",
+      handleAppStateChange
+    );
+    return () => {
+      subscription.remove();
+    };
   }, []);
 
   return {};

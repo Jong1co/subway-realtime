@@ -15,6 +15,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import IncreaseDistanceButton from "../components/_common/IncreaseDistanceButton/IncreaseDistanceButton";
 import { useRecoilState } from "recoil";
 import { distanceState } from "../atom/distanceState";
+import PermissionModal from "../components/_common/PermissionModal/PermissionModal";
 
 export type RunningSubwayInfo = {
   currentPosition: string;

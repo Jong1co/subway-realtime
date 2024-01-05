@@ -1,3 +1,4 @@
+import { permissionState } from "./../atom/permissionState";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { locationState } from "../atom/locationState";
@@ -15,11 +16,15 @@ import { IOSPermissionMap } from "react-native-permissions/dist/typescript/permi
 
 const useGeoLocation = () => {
   const [location, setLocation] = useRecoilState(locationState);
+  const [permissiont, setPermission] = useRecoilState(permissionState);
 
   const caseOfPermission = (
     result: PermissionStatus,
     permission: AndroidPermissionMap | IOSPermissionMap | any
   ) => {
+    // console.log(result);
+    setPermission(result);
+
     switch (result) {
       case RESULTS.UNAVAILABLE:
         request(permission) //
@@ -27,18 +32,24 @@ const useGeoLocation = () => {
         break;
       case RESULTS.DENIED:
         request(permission) //
-          .then(getGeoLocation);
-        break;
-      case RESULTS.LIMITED:
-        request(permission) //
-          .then(getGeoLocation);
+          .then((result) => {
+            if (result === RESULTS.GRANTED) getGeoLocation();
+            if (result === RESULTS.BLOCKED) {
+              // console.log(permissiont);
+              setPermission(result);
+            }
+          })
+          .catch((e) => console.log(e));
         break;
       case RESULTS.GRANTED:
         getGeoLocation();
         break;
+      case RESULTS.LIMITED:
       case RESULTS.BLOCKED:
-        alert("위치 정보 수집 권한이 필요합니다.");
-        navigateToSettings();
+        console.log("hi", result);
+        setPermission(result);
+        // alert("위치 정보 수집 권한이 필요합니다.");
+        // navigateToSettings();
         break;
       default:
         break;
@@ -56,9 +67,10 @@ const useGeoLocation = () => {
       // 안드로이드 위치 정보 수집 권한 요청
       if (Platform.OS === "android") {
         return await check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION) //
-          .then((result) =>
-            caseOfPermission(result, PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
-          );
+          .then((result) => {
+            // console.log(result, "here");
+            caseOfPermission(result, PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION);
+          });
       }
     } catch (e) {
       console.log(e);
@@ -93,35 +105,11 @@ const useGeoLocation = () => {
     setLocation((prev) => ({ ...prev, stale: true }));
   };
 
-  // const requestPermissionFunc = async () => {
-  //   checkPermission().then((result) => {
-  //     if (result === "never_ask_again") {
-  //       alert("위치 정보 수집 권한이 필요합니다.");
-  //       navigateToSettings();
-  //       return;
-  //     }
-
-  //     if (result === "granted") {
-  //       getGeoLocation();
-  //     }
-  //   });
-  // };
-
   useEffect(() => {
     if (location.stale) {
       checkPermission();
     }
   }, [location.stale]);
-
-  const navigateToSettings = () => {
-    if (Platform.OS === "android") {
-      // Android의 경우 애플리케이션 설정 페이지로 이동
-      Linking.openSettings();
-    } else {
-      // iOS의 경우 애플리케이션 설정 페이지로 이동
-      Linking.openURL("app-settings:");
-    }
-  };
 
   return {
     location,
@@ -131,3 +119,17 @@ const useGeoLocation = () => {
 };
 
 export default useGeoLocation;
+
+// const requestPermissionFunc = async () => {
+//   checkPermission().then((result) => {
+//     if (result === "never_ask_again") {
+//       alert("위치 정보 수집 권한이 필요합니다.");
+//       navigateToSettings();
+//       return;
+//     }
+
+//     if (result === "granted") {
+//       getGeoLocation();
+//     }
+//   });
+// };
