@@ -14,6 +14,9 @@ import mobileAds, {
   BannerAdSize,
 } from "react-native-google-mobile-ads";
 import CodePush, { CodePushOptions } from "react-native-code-push";
+import { APP_AD } from "@env";
+
+const adUnitId = __DEV__ ? String(TestIds.ADAPTIVE_BANNER) : APP_AD;
 
 mobileAds()
   .initialize()
@@ -38,7 +41,7 @@ function App() {
         </RecoilRoot>
       </QueryClientProvider>
       <BannerAd
-        unitId={TestIds.ADAPTIVE_BANNER || ""}
+        unitId={adUnitId}
         size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
       />
     </StrictMode>
