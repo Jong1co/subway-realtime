@@ -72,6 +72,7 @@ const StationCardSection = ({
   useEffect(() => {
     // console.log("success: ", success, isFetching);
     // if (isPreload) return;
+    console.log(loading, success, isFetching);
     if (loading.home && success && isFetching) {
       completeHomeLoading();
     }

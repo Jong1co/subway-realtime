@@ -1,4 +1,3 @@
-import { useFonts } from "expo-font";
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import useAppLoading from "../hooks/useAppLoading";
 import SplashScreen from "react-native-splash-screen";
@@ -12,7 +11,7 @@ const AppLoadingContext = ({ children }: PropsWithChildren) => {
   const { loading } = useAppLoading();
 
   useEffect(() => {
-    // console.log(loading);
+    console.log(loading);
     if (loading.bookmark === false && loading.home === false) {
       SplashScreen.hide();
       setLoad(true);

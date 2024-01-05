@@ -23,6 +23,8 @@ const useAroundStationList = (
   const { location } = useGeoLocation();
   const [stationList, setStationList] = useState<StationLineInfo[]>([]);
 
+  console.log(stationList);
+
   const filterStationList = useCallback((lineList: StationInfo[]) => {
     return lineList.reduce((accr, curr) => {
       isAvailableLine(curr.line_num as LineName) &&

@@ -6,12 +6,13 @@ const useAppLoading = () => {
 
   const completeHomeLoading = () => {
     if (!loading.home) return;
-
+    console.log("hi");
     setLoading((prev) => ({ ...prev, home: false }));
   };
 
   const completeBookmarkLoading = () => {
     if (!loading.bookmark) return;
+
     setLoading((prev) => ({ ...prev, bookmark: false }));
   };
 
