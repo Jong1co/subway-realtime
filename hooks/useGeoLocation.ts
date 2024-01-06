@@ -2,7 +2,6 @@ import { permissionState } from "./../atom/permissionState";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { locationState } from "../atom/locationState";
-import Geolocation from "react-native-geolocation-service";
 import { Linking, PermissionsAndroid, Platform } from "react-native";
 import {
   PERMISSIONS,
@@ -13,6 +12,7 @@ import {
 } from "react-native-permissions";
 import { AndroidPermissionMap } from "react-native-permissions/dist/typescript/permissions.android";
 import { IOSPermissionMap } from "react-native-permissions/dist/typescript/permissions.ios";
+import Geolocation from "@react-native-community/geolocation";
 
 const useGeoLocation = () => {
   const [location, setLocation] = useRecoilState(locationState);
@@ -22,7 +22,7 @@ const useGeoLocation = () => {
     result: PermissionStatus,
     permission: AndroidPermissionMap | IOSPermissionMap | any
   ) => {
-    // console.log(result);
+    // console.log("gd", result);
     setPermission(result);
 
     switch (result) {
@@ -46,7 +46,7 @@ const useGeoLocation = () => {
         break;
       case RESULTS.LIMITED:
       case RESULTS.BLOCKED:
-        console.log("hi", result);
+        // console.log("hi", result);
         setPermission(result);
         // alert("위치 정보 수집 권한이 필요합니다.");
         // navigateToSettings();
@@ -81,7 +81,7 @@ const useGeoLocation = () => {
     try {
       Geolocation.getCurrentPosition(
         (position) => {
-          console.log("position", position);
+          // console.log("position", position);
           setLocation({
             loaded: true,
             stale: false,

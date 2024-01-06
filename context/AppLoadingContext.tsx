@@ -20,7 +20,7 @@ const AppLoadingContext = ({ children }: PropsWithChildren) => {
   // console.log(permission);
 
   useEffect(() => {
-    console.log(loading);
+    // console.log(loading);
     if (loading.bookmark === false && loading.home === false) {
       SplashScreen.hide();
       setLoad(true);
@@ -50,27 +50,31 @@ const AppLoadingContext = ({ children }: PropsWithChildren) => {
     }
     // setPermission("");
   };
+  // permission === RESULTS.DENIED &&
 
-  if (
-    permission === RESULTS.BLOCKED ||
-    permission === RESULTS.DENIED ||
-    permission === RESULTS.LIMITED
-  ) {
-    return (
-      <PermissionModal
-        open={true}
-        onClick={navigateToSettings}
-        onClose={() => {
-          // setPermission(RESULTS.UNAVAILABLE);
-        }}
-      />
-    );
-  }
+  // const permission =
+  // if (
+  //   permission === RESULTS.BLOCKED ||
+  //   permission === RESULTS.LIMITED
+  // ) {
+  //   return (
+
+  //   );
+  // }
 
   return (
     <>
       {children}
       {load && <BottomSheet />}
+      {(permission === RESULTS.BLOCKED || permission === RESULTS.LIMITED) && (
+        <PermissionModal
+          open={true}
+          onClick={navigateToSettings}
+          onClose={() => {
+            // setPermission(RESULTS.UNAVAILABLE);
+          }}
+        />
+      )}
     </>
   );
 };

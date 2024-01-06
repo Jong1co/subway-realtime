@@ -15,8 +15,13 @@ import mobileAds, {
 } from "react-native-google-mobile-ads";
 import CodePush, { CodePushOptions } from "react-native-code-push";
 import { APP_AD } from "@env";
+import Geolocation from "@react-native-community/geolocation";
 
 const adUnitId = __DEV__ ? String(TestIds.ADAPTIVE_BANNER) : APP_AD;
+Geolocation.setRNConfiguration({
+  authorizationLevel: "whenInUse",
+  skipPermissionRequests: true,
+});
 
 mobileAds()
   .initialize()

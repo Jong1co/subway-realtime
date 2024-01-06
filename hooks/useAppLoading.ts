@@ -6,7 +6,7 @@ const useAppLoading = () => {
 
   const completeHomeLoading = () => {
     if (!loading.home) return;
-    console.log("hi");
+    // console.log("hi");
     setLoading((prev) => ({ ...prev, home: false }));
   };
 

@@ -21,9 +21,11 @@ const useAroundStationList = (
   const queryClient = useQueryClient();
 
   const { location } = useGeoLocation();
-  const [stationList, setStationList] = useState<StationLineInfo[]>([]);
+  const [stationList, setStationList] = useState<StationLineInfo[] | null>(
+    null
+  );
 
-  console.log(stationList);
+  // console.log(stationList);
 
   const filterStationList = useCallback((lineList: StationInfo[]) => {
     return lineList.reduce((accr, curr) => {

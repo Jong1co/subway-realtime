@@ -32,6 +32,7 @@ export default function HomeScreen({
 
     setDistance((prev) => prev * 2);
   };
+  // console.log(distance);
 
   const queryClient = useQueryClient();
   const { stationList, isLoading, setLoading } = useAroundStationList(
@@ -41,6 +42,8 @@ export default function HomeScreen({
   const { location, invalidateLocation } = useGeoLocation();
   const header = useHomeHeader();
   const flatlistRef = useRef(null);
+
+  if (stationList === null) return null;
 
   return (
     <>
