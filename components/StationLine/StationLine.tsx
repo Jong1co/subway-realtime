@@ -50,28 +50,10 @@ const StationLine = ({
     return accr;
   }, [] as DrawLineInfo[]);
 
-  // console.log(currentStation);
-
-  // if (comparisonStation !== currentStation) {
-  //   console.log("------1");
-  //   console.log("------2");
-  //   console.log(comparisonStation + "방면");
-  //   console.log(runningList);
-  //   console.log("------3");
-  // }
-  //   console.log(isUphill);
-
-  //   console.log("gd", currentStation);
-  //   console.log(
-  //     "comparisonStation === currentStation",
-  //     comparisonStation === currentStation
-  //   );
-  //   console.log(runningList);
-  //   console.log("------");
-  // }
-
   const resultList =
     comparisonStation === currentStation ? runningSubwayList : runningList;
+
+  console.log(comparisonStation, resultList);
 
   return (
     <View

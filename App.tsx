@@ -34,7 +34,7 @@ function App() {
             <SafeAreaProvider>
               <AppLoadingContext>
                 <Router />
-                <StatusBar style="auto" />
+                <StatusBar style="inverted" />
               </AppLoadingContext>
             </SafeAreaProvider>
           </ThemeProvider>

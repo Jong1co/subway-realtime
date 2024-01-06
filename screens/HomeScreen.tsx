@@ -92,7 +92,7 @@ export default function HomeScreen({
             </View>
           }
         />
-        <StatusBar style="auto" />
+        {/* <StatusBar style="auto" /> */}
       </View>
     </>
   );

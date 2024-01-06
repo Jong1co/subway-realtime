@@ -61,7 +61,7 @@ const SearchScreen = ({
         onEndReached={() => fetchNextPage()}
         onEndReachedThreshold={0.5}
       />
-      <StatusBar style="auto" />
+      {/* <StatusBar style="auto" /> */}
     </View>
   );
 };

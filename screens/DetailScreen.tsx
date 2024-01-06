@@ -65,7 +65,7 @@ const DetailScreen = ({
         flatlistRef={flatlistRef}
         LineFooterComponent={<View style={{ height: 92 }} />}
       />
-      <StatusBar style="auto" />
+      {/* <StatusBar style="auto" /> */}
     </View>
   );
 };

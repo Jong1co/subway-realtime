@@ -28,11 +28,9 @@ type Props = {
   increaseDistance?: () => void;
   queryKey: string;
   setIsViewList?: (station: string) => void;
-  // distance: number;
 };
 
 const StationCardSection = ({
-  // distance,
   setIsViewList,
   stationList,
   LineHeaderComponent,

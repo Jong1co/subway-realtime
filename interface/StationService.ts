@@ -6,6 +6,7 @@ export interface StationService {
   currentStation: string;
   lastStation: string;
   arrivalState: string;
+  isFirst: boolean;
   // bookmark: boolean;
   // currentSubwayPositions: string[];
 }
