@@ -12,7 +12,7 @@ import {
 } from "react-native-permissions";
 import { AndroidPermissionMap } from "react-native-permissions/dist/typescript/permissions.android";
 import { IOSPermissionMap } from "react-native-permissions/dist/typescript/permissions.ios";
-import Geolocation from "@react-native-community/geolocation";
+import Geolocation from "react-native-geolocation-service";
 
 const useGeoLocation = () => {
   const [location, setLocation] = useRecoilState(locationState);
@@ -27,14 +27,19 @@ const useGeoLocation = () => {
 
     switch (result) {
       case RESULTS.UNAVAILABLE:
+        console.log("u");
         request(permission) //
           .then(getGeoLocation);
         break;
       case RESULTS.DENIED:
+        console.log("d");
         request(permission) //
           .then((result) => {
+            console.log(result, "here");
+            if (result === RESULTS.DENIED) setPermission(RESULTS.BLOCKED);
             if (result === RESULTS.GRANTED) getGeoLocation();
             if (result === RESULTS.BLOCKED) {
+              console.log(result, "here");
               // console.log(permissiont);
               setPermission(result);
             }
@@ -42,6 +47,7 @@ const useGeoLocation = () => {
           .catch((e) => console.log(e));
         break;
       case RESULTS.GRANTED:
+        console.log("g");
         getGeoLocation();
         break;
       case RESULTS.LIMITED:
@@ -78,10 +84,11 @@ const useGeoLocation = () => {
   }
 
   const getGeoLocation = () => {
+    // console.log("request");
     try {
       Geolocation.getCurrentPosition(
         (position) => {
-          // console.log("position", position);
+          console.log("position", position);
           setLocation({
             loaded: true,
             stale: false,
@@ -104,12 +111,6 @@ const useGeoLocation = () => {
   const invalidateLocation = async () => {
     setLocation((prev) => ({ ...prev, stale: true }));
   };
-
-  useEffect(() => {
-    if (location.stale) {
-      checkPermission();
-    }
-  }, [location.stale]);
 
   return {
     location,

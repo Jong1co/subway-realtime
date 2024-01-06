@@ -5,7 +5,12 @@ import BottomSheet from "../components/_common/BottomSheet/BottomSheet";
 import useObserveAppState from "../hooks/useObserveAppState";
 import { useRecoilState } from "recoil";
 import { permissionState } from "../atom/permissionState";
-import { PERMISSIONS, RESULTS, check } from "react-native-permissions";
+import {
+  PERMISSIONS,
+  RESULTS,
+  check,
+  checkMultiple,
+} from "react-native-permissions";
 import PermissionModal from "../components/_common/PermissionModal/PermissionModal";
 import { Linking, Platform } from "react-native";
 import useGeoLocation from "../hooks/useGeoLocation";
@@ -14,10 +19,17 @@ const AppLoadingContext = ({ children }: PropsWithChildren) => {
   const [permission, setPermission] = useRecoilState(permissionState);
   const [load, setLoad] = useState(false);
   const {} = useObserveAppState();
-  const { requestPermissionFunc } = useGeoLocation();
+  const { requestPermissionFunc, location } = useGeoLocation();
 
   const { loading } = useAppLoading();
   // console.log(permission);
+
+  useEffect(() => {
+    console.log(location);
+    if (location.stale) {
+      requestPermissionFunc();
+    }
+  }, [location.stale]);
 
   useEffect(() => {
     // console.log(loading);
@@ -30,18 +42,27 @@ const AppLoadingContext = ({ children }: PropsWithChildren) => {
   const navigateToSettings = () => {
     if (Platform.OS === "android") {
       // Android의 경우 애플리케이션 설정 페이지로 이동
-      check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION).then((result) => {
-        if (result === RESULTS.GRANTED) {
-          requestPermissionFunc();
-        }
+      checkMultiple([
+        PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+        PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
+      ]).then((result) => {
+        console.log(result);
         if (
-          result === RESULTS.BLOCKED ||
-          result === RESULTS.DENIED ||
-          result === RESULTS.LIMITED
+          result["android.permission.ACCESS_COARSE_LOCATION"] ===
+            RESULTS.GRANTED ||
+          result["android.permission.ACCESS_FINE_LOCATION"] === RESULTS.GRANTED
         ) {
-          // requestPermissionFunc();
-          Linking.openSettings();
+          requestPermissionFunc();
+          return;
         }
+        // if (
+        //   result === RESULTS.BLOCKED ||
+        //   result === RESULTS.DENIED ||
+        //   result === RESULTS.LIMITED
+        // ) {
+        // requestPermissionFunc();
+        Linking.openSettings();
+        // }
       });
       // Linking.openSettings();
     } else {
