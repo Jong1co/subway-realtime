@@ -8,6 +8,7 @@ import StationLineCard, {
 } from "../StationLineCard/StationLineCard";
 import { getLineCode } from "../../utils/getLineCode";
 import { StationServiceImpl } from "../../service/StationServiceImpl";
+import checkDirection from "../../utils/checkRemainTime";
 
 type Props = {
   station: string;
@@ -36,26 +37,32 @@ const StationGroup = ({ station, line, subwayList }: Props) => {
             line={line}
             remainTime={
               (subwayList || [])?.find((subway) => {
-                return (
-                  subway.nextStation ===
-                    lineInfo[0].nextStation.split("(")[0] &&
-                  subway.line === line &&
-                  subway.isFirst
-                );
+                return checkDirection(subway, lineInfo, line, station);
               })?.arrivalState || "도착 정보 없음"
             }
             runningSubwayList={subwayList.reduce((accr, curr) => {
-              const nextStation = lineInfo[0].nextStation.split("(")[0];
-              if (curr.nextStation === nextStation && curr.line === line) {
-                return [
-                  ...accr,
-                  {
+              const isUphill =
+                lineInfo[0].direction === "상행" ||
+                lineInfo[0].direction === "외선";
+              if (station !== "구로") {
+                if (curr.line === line && curr.isUphill === isUphill) {
+                  accr.push({
                     currentStation: curr.currentStation,
                     lastStation: curr.lastStation,
                     isExpress: curr.isExpress,
                     isSuperExpress: curr.isSuperExpress,
-                  },
-                ];
+                  });
+                }
+                return accr;
+              }
+              const nextStation = lineInfo[0].nextStation.split("(")[0];
+              if (curr.nextStation === nextStation && curr.line === line) {
+                accr.push({
+                  currentStation: curr.currentStation,
+                  lastStation: curr.lastStation,
+                  isExpress: curr.isExpress,
+                  isSuperExpress: curr.isSuperExpress,
+                });
               }
               return accr;
             }, [] as DrawLineInfo[])}

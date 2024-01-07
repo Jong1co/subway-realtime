@@ -8,11 +8,20 @@ type LineInfo = {
   direction: string;
 }[];
 
-const checkRemainTime = (
+const checkDirection = (
   subway: StationService,
   lineInfo: LineInfo,
-  line: LineName
+  line: LineName,
+  station: string
 ) => {
+  if (station !== "구로") {
+    const isUphill =
+      lineInfo[0].direction === "상행" || lineInfo[0].direction === "외선";
+    return (
+      subway.line === line && subway.isFirst && subway.isUphill === isUphill
+    );
+  }
+
   return (
     subway.nextStation === lineInfo[0].nextStation.split("(")[0] &&
     subway.line === line &&
@@ -20,4 +29,4 @@ const checkRemainTime = (
   );
 };
 
-export default checkRemainTime;
+export default checkDirection;

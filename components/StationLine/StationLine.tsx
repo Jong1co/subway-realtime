@@ -51,9 +51,11 @@ const StationLine = ({
   }, [] as DrawLineInfo[]);
 
   const resultList =
-    comparisonStation === currentStation ? runningSubwayList : runningList;
+    comparisonStation === currentStation
+      ? runningSubwayList
+      : runningList.concat(runningSubwayList);
 
-  console.log(comparisonStation, resultList);
+  console.log(comparisonStation, currentStation, resultList);
 
   return (
     <View
@@ -78,9 +80,15 @@ const StationLine = ({
       {list.map((item) => {
         const isCurrentStation = currentStation === item;
         const hasSubway = resultList.find(
-          ({ currentStation: runningSubwayStation, lastStation }) =>
-            runningSubwayStation === item
+          ({ currentStation: runningSubwayStation, lastStation }) => {
+            if (runningSubwayStation === "춘의역") {
+              return item === "춘의";
+            }
+
+            return runningSubwayStation === item;
+          }
         );
+        // console.log(hasSubway);
 
         const subwayIcon = hasSubway?.isExpress
           ? "Express"

@@ -4,6 +4,7 @@ export interface StationService {
   // direction: string;
   arrivalTime: number;
   currentStation: string;
+  isUphill: boolean;
   lastStation: string;
   arrivalState: string;
   isFirst: boolean;
