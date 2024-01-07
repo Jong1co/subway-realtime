@@ -6,7 +6,6 @@ import { StationServiceImpl } from "../service/StationServiceImpl";
 export const getSubwayListByStation = async ({
   station_nm,
 }: Pick<StationInfo, "station_nm">) => {
-  console.log("station_nm", station_nm);
   try {
     const { data } = await seoulApi.get(
       `/realtimeStationArrival/1/20/${station_nm}`

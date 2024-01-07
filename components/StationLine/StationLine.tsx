@@ -55,8 +55,6 @@ const StationLine = ({
       ? runningSubwayList
       : runningList.concat(runningSubwayList);
 
-  console.log(comparisonStation, currentStation, resultList);
-
   return (
     <View
       style={{

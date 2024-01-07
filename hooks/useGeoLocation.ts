@@ -88,7 +88,7 @@ const useGeoLocation = () => {
     try {
       Geolocation.getCurrentPosition(
         (position) => {
-          console.log("position", position);
+          // console.log("position", position);
           setLocation({
             loaded: true,
             stale: false,
